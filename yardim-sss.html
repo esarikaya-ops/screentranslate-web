@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yardım ve SSS - Screen Translate</title>
+    <meta name="description" content="Screen Translate uygulaması için yardım, sık sorulan sorular ve teknik destek bilgileri.">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #764ba2;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            width: 35px;
+            height: 35px;
+            border-radius: 8px;
+            object-fit: cover;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #ff6b6b;
+            opacity: 1;
+        }
+
+        .nav-btn {
+            background: #ff6b6b;
+            color: white !important;
+            padding: 0.5rem 1.2rem;
+            border-radius: 25px;
+            transition: all 0.3s ease !important;
+        }
+
+        .nav-btn:hover {
+            background: #ff5252;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+        }
+
+        .hero {
+            padding: 140px 0 60px;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .content {
+            background: white;
+            padding: 80px 0;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            color: #333;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .subsection-title {
+            font-size: 1.8rem;
+            color: #667eea;
+            margin: 2rem 0 1rem 0;
+            border-left: 4px solid #ff6b6b;
+            padding-left: 1rem;
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .faq-item {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 10px;
+            padding: 1.5rem;
+            border: 1px solid #e0e0e0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .faq-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-question {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            color: #ff6b6b;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-question.active::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            color: #666;
+            line-height: 1.6;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-answer.active {
+            max-height: 500px;
+        }
+
+        .faq-answer p {
+            margin-bottom: 1rem;
+        }
+
+        .faq-answer ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .faq-answer li {
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight {
+            color: #ff6b6b;
+            font-weight: 600;
+        }
+
+        .tech-specs {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            border: 1px solid #e0e0e0;
+        }
+
+        .spec-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .spec-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .spec-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .spec-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .spec-desc {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .contact-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 15px;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .contact-section h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-section p {
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .contact-btn {
+            background: #ff6b6b;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .contact-btn:hover {
+            background: #ff5252;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 107, 107, 0.3);
+        }
+
+        .back-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .subsection-title {
+                font-size: 1.5rem;
+            }
+
+            .spec-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="https://images.squarespace-cdn.com/content/67eaf5802fa4430becab8e5e/ea424aa9-b006-4062-b0ff-99ad422317e1/screen+translate+ikon.jpg?content-type=image%2Fjpeg" alt="Screen Translate Logo" class="logo-img">
+                <span class="logo-text">Screen Translate</span>
+            </a>
+            <nav class="nav-links">
+                <a href="index.html#modes">Modlar</a>
+                <a href="index.html#features">Özellikler</a>
+                <a href="https://www.screentranslate.com/hakkmzda">Hakkımızda</a>
+                <a href="https://www.screentranslate.com/yardm-ve-sss">Yardım & SSS</a>
+                <a href="https://www.screentranslate.com/gizlilik-politikasi" class="nav-link-sub">Gizlilik</a>
+                <a href="https://www.screentranslate.com/kullanici-sozlesmesi" class="nav-link-sub">Sözleşme</a>
+                <a href="index.html#download" class="nav-btn">İndir</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="content">
+        <div class="container">
+            <!-- Genel Sorular -->
+            <section class="section">
+                <h2 class="section-title">🤔 Sık Sorulan Sorular</h2>
+                
+                <h3 class="subsection-title">📱 Genel Kullanım</h3>
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <div class="faq-question">Screen Translate nedir ve nasıl çalışır?</div>
+                        <div class="faq-answer">
+                            <p>Screen Translate, Android cihazınızın ekranındaki herhangi bir metni gerçek zamanlı olarak farklı dillere çeviren bir uygulamadır. Uygulama:</p>
+                            <ul>
+                                <li>OCR (Optik Karakter Tanıma) teknolojisi ile metni okur</li>
+                                <li>Google ML Kit ve TensorFlow GPU ile hızlı işleme yapar</li>
+                                <li>50+ farklı dilde çeviri sağlar (3 güçlü çeviri motoru)</li>
+                                <li>Herhangi bir uygulama üzerinde overlay olarak çalışır</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">Hangi dilleri destekliyor?</div>
+                        <div class="faq-answer">
+                            <p><strong>OCR Kaynak Dilleri (50 dil):</strong></p>
+                            <ul>
+                                <li>İngilizce, İspanyolca, Fransızca, Almanca, İtalyanca, Portekizce</li>
+                                <li>Türkçe, Çince, Japonca, Korece, Arapça, Hintçe, Rusça</li>
+                                <li>Tayca, Vietnamca, Endonezce, Bengalce, Farsça, Urduca, Tamilce</li>
+                                <li>Çekçe, Danca, Fince, Norveççe, Bulgarca, Hırvatça, Slovakça</li>
+                                <li>Litvanca, Katalanca, Sırpça, Nepalce, Sinhalaca, Birmanca</li>
+                                <li>Kmerce, Laoca, Moğolca, Afrikaanca, Tagalogca, Kazakça, Azerice</li>
+                            </ul>
+                            <p><strong>Çeviri Hedef Dilleri (50+ dil):</strong></p>
+                            <ul>
+                                <li>Tüm OCR dilleri + Arapça, Bengalce, Hollandaca, Yunanca</li>
+                                <li>Hintçe, Macarca, İbranice, Endonezce, Malayca, Farsça</li>
+                                <li>Lehçe, Rumence, Rusça, İsveççe, Svahili, Tamilce</li>
+                                <li>Tayca, Ukraynaca, Urduca, Vietnamca ve daha fazlası</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">Sistem gereksinimleri nelerdir?</div>
+                        <div class="faq-answer">
+                            <p><strong>Minimum Gereksinimler:</strong></p>
+                            <ul>
+                                <li><span class="highlight">Android 6.0+</span> (API seviye 23)</li>
+                                <li><span class="highlight">2GB RAM</span> önerilir</li>
+                                <li>Çeviri için <span class="highlight">internet bağlantısı</span> (Gemini AI, Google Cloud) veya çevrimdışı ML Kit</li>
+                                <li>ARM64-v8a, ARMv7 veya x86_64 mimari</li>
+                            </ul>
+                            <p><strong>Optimize Edildi:</strong> Android 15 ve Android 16, 16KB sayfa hizalama desteği</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">Offline dil paketlerini nasıl indiririm?</div>
+                        <div class="faq-answer">
+                            <p><strong>Adım 1:</strong> Ayarlar → Çevrimdışı Diller → Dil Paketleri</p>
+                            <p><strong>Adım 2:</strong> İndirmek istediğiniz dili listeden bulun (arama kutusunu kullanabilirsiniz)</p>
+                            <p><strong>Adım 3:</strong> İndir butonuna basın ve ilerlemeyi takip edin</p>
+                            <p><strong>Not:</strong> Her dil paketi ~10MB boyutunda. İndirme için internet bağlantısı gerekir, ancak indirdikten sonra çevrimdışı kullanabilirsiniz.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">Kaç dil offline kullanılabilir?</div>
+                        <div class="faq-answer">
+                            <p>ML Kit offline çeviri için <strong>28 dil</strong> mevcuttur:</p>
+                            <p>İngilizce, Türkçe, İspanyolca, Fransızca, Almanca, İtalyanca, Portekizce, Rusça, Çince, Japonca, Korece, Arapça, Hintçe, Hollandaca, Lehçe, İsveççe, Norveççe, Danca, Fince, Çekçe, Ukraynaca, Yunanca, İbranice, Tay, Vietnamca, Endonezce, Malayca, Farsça</p>
+                            <p>İnternet bağlantısı olmadan tam çeviri deneyimi için bu dilleri önceden indirin.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="subsection-title">⚙️ Kurulum ve İzinler</h3>
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <div class="faq-question">Uygulama hangi izinleri istiyor ve neden?</div>
+                        <div class="faq-answer">
+                            <p><strong>Gerekli İzinler:</strong></p>
+                            <ul>
+                                <li><strong>Diğer uygulamaların üzerine çizim:</strong> Overlay arayüzü için gerekli</li>
+                                <li><strong>Ekran yakalama:</strong> OCR için ekran içeriğini okumak</li>
+                                <li><strong>Ön plan hizmeti:</strong> Arka planda sürekli çalışabilmek için</li>
+                                <li><strong>Bildirimler:</strong> Kullanıcıyı bilgilendirmek için</li>
+                                <li><strong>İnternet:</strong> Çeviri API'leri için (isteğe bağlı)</li>
+                            </ul>
+                            <p><strong>Güvenlik:</strong> Tüm izinler sadece uygulamanın temel işlevleri için kullanılır.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">Google Play'den nasıl indirebilirim?</div>
+                        <div class="faq-answer">
+                            <p><strong>İndirme Adımları:</strong></p>
+                            <ul>
+                                <li>Google Play Store'u açın</li>
+                                <li>"Screen Translate" aratın veya <a href="https://play.google.com/store/apps/details?id=com.esarikaya.screentranslate" target="_blank">buraya tıklayın</a></li>
+                                <li>"Yükle" butonuna basın</li>
+                                <li>Gerekli izinleri verin</li>
+                                <li>Uygulamayı açın ve kurulum talimatlarını takip edin</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">İlk kurulumda ne yapmalıyım?</div>
+                        <div class="faq-answer">
+                            <p><strong>Kurulum Adımları:</strong></p>
+                            <ul>
+                                <li>Uygulamayı Google Play'den indirin</li>
+                                <li>İlk açılışta gerekli izinleri verin</li>
+                                <li>Kaynak ve hedef dilleri seçin</li>
+                                <li>Overlay ayarlarını yapılandırın</li>
+                                <li>Test çevirisi yaparak çalıştığını doğrulayın</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="subsection-title">🐛 Sorun Giderme</h3>
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <div class="faq-question">Uygulama çalışmıyor, ne yapmalıyım?</div>
+                        <div class="faq-answer">
+                            <p><strong>Deneyebileceğiniz Çözümler:</strong></p>
+                            <ul>
+                                <li>Gerekli izinlerin verildiğinden emin olun</li>
+                                <li>Android sürümünüzün 6.0+ olduğunu kontrol edin</li>
+                                <li>Uygulamayı tamamen kapatıp yeniden açın</li>
+                                <li>Cihazınızı yeniden başlatın</li>
+                                <li>Play Store'dan güncellemeleri kontrol edin</li>
+                                <li>Sorun devam ederse uygulamayı kaldırıp yeniden yükleyin</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">OCR metni doğru tanımıyor</div>
+                        <div class="faq-answer">
+                            <p><strong>OCR Doğruluğunu Artırmak İçin:</strong></p>
+                            <ul>
+                                <li>Ekran parlaklığını artırın</li>
+                                <li>Metnin net ve büyük olduğundan emin olun</li>
+                                <li>Doğru kaynak dili seçildiğini kontrol edin</li>
+                                <li>Karmaşık fontlar yerine basit fontları tercih edin</li>
+                                <li>El yazısı yerine düz metin kullanın</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">Çeviri kalitesi düşük</div>
+                        <div class="faq-answer">
+                            <p><strong>Çeviri Kalitesini Artırmak İçin:</strong></p>
+                            <ul>
+                                <li>İnternet bağlantınızın stabil olduğundan emin olun</li>
+                                <li>Kaynak metnin doğru tanındığını kontrol edin</li>
+                                <li>Doğru kaynak ve hedef dilleri seçin</li>
+                                <li>Kısa ve basit cümleler daha iyi çevrilir</li>
+                                <li>Teknik terimler için manuel kontrol yapın</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">Uygulama çok pil tüketiyor</div>
+                        <div class="faq-answer">
+                            <p><strong>Pil Tasarrufu İçin:</strong></p>
+                            <ul>
+                                <li>Kullanmadığınızda overlay'i kapatın</li>
+                                <li>Arka plan hizmetini durdurun</li>
+                                <li>GPU hızlandırmasını gerektiğinde kapatın</li>
+                                <li>Gereksiz bildirimleri devre dışı bırakın</li>
+                                <li>Uygulamayı tamamen kapatmak için ayarlardan çıkın</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Teknik Özellikler -->
+            <section class="section">
+                <h2 class="section-title">⚡ Teknik Özellikler</h2>
+
+                <div class="faq-grid" style="margin-bottom: 2rem;">
+                    <div class="faq-item">
+                        <div class="faq-question">Cloud Vision OCR ile ML Kit OCR arasındaki fark nedir?</div>
+                        <div class="faq-answer">
+                            <p><strong>Cloud Vision OCR:</strong></p>
+                            <ul>
+                                <li>50 dil desteği (en geniş)</li>
+                                <li>Bulut tabanlı - internet gerektirir</li>
+                                <li>Yüksek doğruluk oranı</li>
+                                <li>Tüm alfabe ve scriptleri destekler</li>
+                            </ul>
+                            <p><strong>ML Kit OCR:</strong></p>
+                            <ul>
+                                <li>16 dil desteği (Latin, Çin, Japon, Kore, Devanagari)</li>
+                                <li>Cihaz üzerinde çalışır - internet gerekmez</li>
+                                <li>Daha hızlı yanıt süresi</li>
+                                <li>Gizlilik odaklı (veri cihazdan çıkmaz)</li>
+                            </ul>
+                            <p>Ayarlardan OCR motorunu değiştirebilirsiniz.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tech-specs">
+                    <div class="spec-grid">
+                        <div class="spec-item">
+                            <div class="spec-icon">🤖</div>
+                            <div class="spec-title">Android Uyumluluğu</div>
+                            <div class="spec-desc">Android 6.0+ (API 23-36)<br>Android 15 ve 16 optimize</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-icon">🧠</div>
+                            <div class="spec-title">AI Teknolojisi</div>
+                            <div class="spec-desc">Google ML Kit OCR<br>TensorFlow Lite GPU</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-icon">🛡️</div>
+                            <div class="spec-title">Gizlilik Seçenekleri</div>
+                            <div class="spec-desc">ML Kit: Yerel | Cloud Vision: Bulut<br>Çeviri metinleri saklanmaz</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-icon">🚀</div>
+                            <div class="spec-title">Performans</div>
+                            <div class="spec-desc">GPU Hızlandırma<br>Düşük Gecikme</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Gizlilik ve Güvenlik -->
+            <section class="section">
+                <h2 class="section-title">🔒 Gizlilik ve Güvenlik</h2>
+                
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <div class="faq-question">Verilerim güvende mi?</div>
+                        <div class="faq-answer">
+                            <p><strong>Gizlilik Koruması (Şeffaf Açıklama):</strong></p>
+                            <ul>
+                                <li><span class="highlight">OCR İşleme:</span> ML Kit OCR cihazda, Cloud Vision OCR bulutta çalışır</li>
+                                <li><span class="highlight">Çeviri Seçenekleri:</span> ML Kit (%100 yerel), Gemini AI (bulut), Google Cloud (bulut)</li>
+                                <li><span class="highlight">Çeviri Metinleri Saklanmaz:</span> Çevirdiğiniz metinler hiçbir zaman kayıt altına alınmaz, sadece anlık işlenir</li>
+                                <li><span class="highlight">AdMob Veri Toplama:</span> Google AdMob, reklam gösterimi için Reklam ID ve teknik veriler toplar</li>
+                                <li><span class="highlight">Hassas Veri Filtreleme:</span> Kredi kartı, telefon numarası gibi hassas veriler otomatik filtrelenir</li>
+                                <li><span class="highlight">AES-256 Şifreleme:</span> Yerel ayarlar ve tercihler şifrelenir</li>
+                                <li>KVKK ve GDPR uyumlu, detaylı bilgi için Gizlilik Politikası'na bakın</li>
+                            </ul>
+                            <p style="margin-top: 1rem;"><strong>Gizlilik İçin Öneri:</strong> En yüksek gizlilik için ML Kit OCR + ML Kit Offline çeviri kombinasyonunu kullanın. Bu mod tamamen çevrimdışı çalışır ve hiçbir veri cihazınızdan çıkmaz.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">İnternet bağlantısı neden gerekiyor?</div>
+                        <div class="faq-answer">
+                            <p>İnternet bağlantısı OCR ve çeviri seçiminize bağlı:</p>
+                            <ul>
+                                <li>ML Kit OCR: Tamamen offline çalışır</li>
+                                <li>Cloud Vision OCR: İnternet gerektirir (50 dil desteği)</li>
+                                <li>ML Kit Çeviri: Offline (28 dil)</li>
+                                <li>Gemini/Google Cloud Çeviri: İnternet gerektirir</li>
+                                <li>Hiçbir çeviri metni saklanmaz</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">Uygulama ücretsiz mi? Reklamlar var mı?</div>
+                        <div class="faq-answer">
+                            <p><strong>Ücretsiz Kullanım:</strong></p>
+                            <ul>
+                                <li><span class="highlight">%100 Ücretsiz:</span> Uygulama tamamen ücretsiz olarak sunulmaktadır</li>
+                                <li><span class="highlight">Google AdMob Reklamları:</span> Ücretsiz hizmet sunabilmek için Google AdMob kullanılır</li>
+                                <li><span class="highlight">Kişiselleştirilmiş Reklamlar:</span> Tercih ederseniz ayarlardan kapatabilirsiniz</li>
+                                <li><span class="highlight">Reklam ID:</span> Google AdMob, reklam gösterimi için cihaz Reklam ID'si kullanır</li>
+                                <li>Gizlilik Politikası'nda detaylı bilgi bulabilirsiniz</li>
+                            </ul>
+                            <p style="margin-top: 1rem;"><em>Not: Kişiselleştirilmiş reklamları devre dışı bırakmak için cihazınızın Ayarlar → Google → Reklamlar bölümünden "Reklam kişiselleştirmeyi devre dışı bırak" seçeneğini aktifleştirebilirsiniz.</em></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- İletişim -->
+            <div class="contact-section">
+                <h3>📞 Daha Fazla Yardıma İhtiyacınız Var mı?</h3>
+                <p>Sorununuzu burada bulamadıysanız, destek ekibimizle iletişime geçebilirsiniz.</p>
+                <a href="mailto:info@screentranslate.com" class="contact-btn">📧 Destek Ekibiyle İletişim</a>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // FAQ accordion functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const isActive = answer.classList.contains('active');
+                
+                // Close all other FAQ items
+                document.querySelectorAll('.faq-answer').forEach(ans => {
+                    ans.classList.remove('active');
+                });
+                document.querySelectorAll('.faq-question').forEach(q => {
+                    q.classList.remove('active');
+                });
+                
+                // Toggle current item
+                if (!isActive) {
+                    answer.classList.add('active');
+                    question.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth scrolling for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kullanıcı Sözleşmesi - Screen Translate</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #764ba2;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            width: 35px;
+            height: 35px;
+            border-radius: 8px;
+            object-fit: cover;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #ff6b6b;
+            opacity: 1;
+        }
+
+        .nav-btn {
+            background: #ff6b6b;
+            color: white !important;
+            padding: 0.5rem 1.2rem;
+            border-radius: 25px;
+            transition: all 0.3s ease !important;
+        }
+
+        .nav-btn:hover {
+            background: #ff5252;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+        }
+
+        .hero {
+            padding: 140px 0 60px;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .update-info {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            display: inline-block;
+        }
+
+        .content {
+            background: white;
+            padding: 60px 0;
+        }
+
+        .legal-content {
+            background: #f8f9fa;
+            padding: 3rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            border: 1px solid #e0e0e0;
+        }
+
+        .legal-content h2 {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #667eea;
+        }
+
+        .legal-content h3 {
+            font-size: 1.3rem;
+            color: #667eea;
+            margin-bottom: 1rem;
+            margin-top: 2rem;
+        }
+
+        .legal-content p {
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        .legal-content ul,
+        .legal-content ol {
+            margin: 1rem 0 1rem 2rem;
+        }
+
+        .legal-content li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+
+        .highlight-box h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: #ff6b6b;
+        }
+
+        .warning-box {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #ffc107;
+        }
+
+        .warning-box h4 {
+            color: #856404;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 0;
+            text-align: center;
+            color: white;
+        }
+
+        .contact-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-section p {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            max-width: 400px;
+            margin: 0 auto;
+            backdrop-filter: blur(10px);
+        }
+
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+
+            .legal-content {
+                padding: 2rem;
+            }
+
+            .legal-content ul,
+            .legal-content ol {
+                margin-left: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="https://images.squarespace-cdn.com/content/67eaf5802fa4430becab8e5e/ea424aa9-b006-4062-b0ff-99ad422317e1/screen+translate+ikon.jpg?content-type=image%2Fjpeg" alt="Screen Translate Logo" class="logo-img">
+                <span class="logo-text">Screen Translate</span>
+            </a>
+            <nav class="nav-links">
+                <a href="index.html#modes">Modlar</a>
+                <a href="index.html#features">Özellikler</a>
+                <a href="https://www.screentranslate.com/hakkmzda">Hakkımızda</a>
+                <a href="https://www.screentranslate.com/yardm-ve-sss">Yardım & SSS</a>
+                <a href="https://www.screentranslate.com/gizlilik-politikasi" class="nav-link-sub">Gizlilik</a>
+                <a href="https://www.screentranslate.com/kullanici-sozlesmesi" class="nav-link-sub">Sözleşme</a>
+                <a href="index.html#download" class="nav-btn">İndir</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>📋 Kullanıcı Sözleşmesi</h1>
+                <p>Screen Translate uygulaması için kullanım şartları ve koşulları</p>
+                <div class="update-info">Son Güncelleme: 24 Mayıs 2026</div>
+            </div>
+        </section>
+
+        <section class="content">
+            <div class="container">
+                <div class="legal-content">
+                    <h2>1. Sözleşme Koşullarının Kabulü</h2>
+                    <p>
+                        Bu Kullanıcı Sözleşmesi ("Sözleşme"), Screen Translate Android uygulaması ("Uygulama")
+                        ve ilgili hizmetlerin kullanımına ilişkin şartlar ve koşulları belirler. Bu uygulamayı
+                        indirerek, yükleyerek veya kullanarak, bu sözleşmenin tüm şartlarını kabul etmiş sayılırsınız.
+                    </p>
+
+                    <div class="warning-box">
+                        <h4>⚠️ Önemli Uyarı</h4>
+                        <p>Bu sözleşme şartlarını kabul etmiyorsanız, uygulamayı kullanmamanızı rica ederiz.</p>
+                    </div>
+
+                    <h3>Tanımlar</h3>
+                    <ul>
+                        <li><strong>"AURSAL"</strong> veya <strong>"Biz"</strong>: Screen Translate uygulamasının
+                            geliştiricisi</li>
+                        <li><strong>"Kullanıcı"</strong> veya <strong>"Siz"</strong>: Uygulamayı kullanan kişi</li>
+                        <li><strong>"Uygulama"</strong>: Screen Translate Android uygulaması</li>
+                        <li><strong>"Hizmet"</strong>: Uygulama tarafından sağlanan çeviri hizmetleri</li>
+                    </ul>
+                </div>
+
+                <div class="legal-content">
+                    <h2>2. Hizmetin Tanımı</h2>
+                    <p>
+                        Screen Translate, Android cihazlarda gerçek zamanlı ekran çevirisi sağlayan bir uygulamadır.
+                        Uygulama aşağıdaki temel işlevleri sunar:
+                    </p>
+                    <ul>
+                        <li>OCR (Optik Karakter Tanıma) teknolojisi ile metin algılama</li>
+                        <li>50+ dilde çeviri desteği</li>
+                        <li>Overlay (kaplama) arayüzü ile gerçek zamanlı çeviri</li>
+                        <li>Hassas veri koruma ve gizlilik filtreleri</li>
+                        <li>Özelleştirilebilir kullanıcı arayüzü</li>
+                        <li><strong>5 farklı çeviri modu:</strong> Varsayılan, Dokunma, Sohbet, Oyun, Sosyal Medya</li>
+                    </ul>
+
+                    <div class="highlight-box">
+                        <h4>🚀 Hizmet Özellikleri</h4>
+                        <p>
+                            Uygulama, Google ML Kit OCR ve TensorFlow teknolojilerini kullanarak
+                            yüksek doğrulukta metin tanıma ve çeviri hizmetleri sunar.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="legal-content">
+                    <h2>3. Kullanım Koşulları</h2>
+
+                    <h3>3.1 İzin Verilen Kullanım</h3>
+                    <p>Bu uygulamayı aşağıdaki amaçlarla kullanabilirsiniz:</p>
+                    <ul>
+                        <li>Kişisel eğitim ve öğrenme amaçlı</li>
+                        <li>Dil bariyerlerini aşmak için</li>
+                        <li>İçerik anlama ve çeviri için</li>
+                        <li>Erişilebilirlik desteği olarak</li>
+                    </ul>
+
+                    <h3>3.2 Yasak Kullanımlar</h3>
+                    <p>Aşağıdaki kullanımlar kesinlikle yasaktır:</p>
+                    <ul>
+                        <li>Telif hakkı ihlali amacıyla kullanım</li>
+                        <li>Zararlı, yasa dışı veya etik olmayan içerikleri çevirmek</li>
+                        <li>Uygulamayı tersine mühendislik yapmak</li>
+                        <li>Uygulamanın güvenlik özelliklerini devre dışı bırakmaya çalışmak</li>
+                        <li>Spam, dolandırıcılık veya kötüye kullanım amaçlı kullanım</li>
+                        <li>Başkalarının gizliliğini ihlal edecek şekilde kullanım</li>
+                    </ul>
+
+                    <div class="warning-box">
+                        <h4>⚖️ Yasal Sorumluluk</h4>
+                        <p>
+                            Yasak kullanımlardan doğan her türlü yasal sorumluluk tamamen kullanıcıya aittir.
+                            AURSAL bu tür kullanımlardan sorumlu tutulamaz.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="legal-content">
+                    <h2>4. Gizlilik ve Veri Koruma</h2>
+                    <p>
+                        Kullanıcı gizliliği bizim için en önemli konulardan biridir. Uygulamamız:
+                    </p>
+                    <ul>
+                        <li>OCR (metin tanıma) için ML Kit (yerel) veya Cloud Vision (bulut) seçenekleri sunar</li>
+                        <li>4 çeviri motoru sunar: Gemini AI, DeepSeek, Google Cloud Translate (online), ML Kit (offline - tamamen çevrimdışı)</li>
+                        <li>Çevrilen metinleri hiçbir sunucuda saklamaz (sadece işleme için gönderilir)</li>
+                        <li>Hassas veri filtreleri ile kişisel bilgileri korur</li>
+                        <li>MediaProjection API'sini güvenli şekilde kullanır</li>
+                        <li>Gizlilik odaklıysanız ML Kit motorunu seçerek tamamen çevrimdışı çalışabilirsiniz</li>
+                    </ul>
+
+                    <div class="warning-box" style="background: #fff3cd; border-color: #f39c12;">
+                        <h4 style="color: #856404;">📺 Reklam Hizmetleri ve Veri Toplama</h4>
+                        <p style="color: #856404;">
+                            Uygulamayı ücretsiz sunabilmek için <strong>Google AdMob</strong> reklam platformu kullanılır.
+                            AdMob, reklam gösterimi için belirli teknik verileri (Reklam ID, IP adresi, cihaz bilgileri) toplar.
+                        </p>
+                        <p style="color: #856404; margin-top: 0.5rem;">
+                            <strong>Önemli:</strong> Çevirileriniz ve kişisel içerikleriniz AdMob ile paylaşılmaz.
+                            Sadece reklam gösterimi için teknik veriler toplanır.
+                        </p>
+                        <p style="color: #856404; margin-top: 0.5rem;">
+                            <strong>Pro Üyelik:</strong> Pro üyelik satın aldığınızda reklamlar
+                            tamamen kaldırılır. AdMob aktif olmaz.
+                        </p>
+                    </div>
+
+                    <p style="margin-top: 1rem;">
+                        Detaylı gizlilik bilgileri için <a href="gizlilik-politikasi.html"
+                            style="color: #667eea;">Gizlilik Politikamızı</a>
+                        inceleyiniz.
+                    </p>
+
+                    <h3>Erişilebilirlik Hizmeti Kullanımı</h3>
+                    <div class="warning-box"
+                        style="background: #ffebee; border-color: #ff6b6b; border-left: 4px solid #ff6b6b;">
+                        <h4 style="color: #c62828;">⚠️ Önemli: Sohbet Modu İzni</h4>
+                        <p style="color: #c62828;">
+                            <strong>Sohbet Modu</strong>, Android Erişilebilirlik Hizmeti (AccessibilityService)
+                            API'sini kullanır.
+                        </p>
+                    </div>
+
+                    <h4>Erişilebilirlik Hizmeti Kullanım Amacı</h4>
+                    <p>Screen Translate'in Sohbet Modu, aşağıdaki amaçlarla Erişilebilirlik Hizmeti'ni kullanır:</p>
+                    <ul>
+                        <li>Mesajlaşma uygulamalarındaki (WhatsApp, Telegram, Instagram vb.) metin içeriğini okumak</li>
+                        <li>Gelen ve giden mesajları gerçek zamanlı çevirmek</li>
+                        <li>Klavye alanını tespit ederek çeviri alanından hariç tutmak</li>
+                    </ul>
+
+                    <h4>Veri Koruma Taahhüdü</h4>
+                    <p>Erişilebilirlik Hizmeti aracılığıyla erişilen veriler için aşağıdaki taahhütleri veriyoruz:</p>
+                    <ul>
+                        <li>❌ Mesaj içerikleri <strong>kaydedilmez veya saklanmaz</strong></li>
+                        <li>❌ Kişisel veriler <strong>üçüncü taraflarla paylaşılmaz</strong> (reklam vs.)</li>
+                        <li>⚠️ Çeviri metni seçilen motora göre işlenir:</li>
+                        <ul style="margin-left: 2rem; margin-top: 0.5rem;">
+                            <li>✅ <strong>ML Kit:</strong> %100 cihazda, hiçbir sunucuya gönderilmez</li>
+                            <li>⚠️ <strong>Gemini AI / DeepSeek / Google Cloud:</strong> Sadece çeviri metni ilgili servislere gönderilir</li>
+                        </ul>
+                        <li>✅ Metin okuma <strong>ML Kit ile yerel, Cloud Vision ile bulutta</strong> gerçekleşir</li>
+                        <li>✅ İşlem sonrası veriler <strong>anında silinir</strong></li>
+                    </ul>
+                    <p style="margin-top: 1rem; padding: 1rem; background: #e8f5e9; border-left: 4px solid #4caf50; border-radius: 5px;">
+                        💡 <strong>Gizlilik İpucu:</strong> Maksimum gizlilik için ayarlardan <strong>ML Kit (Offline)</strong> motorunu seçin.
+                        Bu şekilde hiçbir veri cihazınızdan çıkmaz.
+                    </p>
+
+                    <h4>Diğer Modlar</h4>
+                    <p>
+                        Varsayılan Mod, Dokunma Modu, Oyun Modu ve Sosyal Medya Modu Erişilebilirlik Hizmeti
+                        <strong>kullanmaz</strong>.
+                        Bu modlar yalnızca MediaProjection (ekran yakalama) API'sini kullanır.
+                    </p>
+
+                    <div class="highlight-box">
+                        <h4>🔐 Kullanıcı Kontrolü</h4>
+                        <p>
+                            Erişilebilirlik Hizmeti iznini istediğiniz zaman Android Ayarları &gt; Erişilebilirlik
+                            bölümünden devre dışı bırakabilirsiniz. Bu durumda Sohbet Modu çalışmayacaktır ancak
+                            diğer 4 mod normal şekilde kullanılabilir.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="legal-content" style="border: 2px solid #ff6b6b;">
+                    <h2 style="color: #ff6b6b;">5. Pro Üyelik Şartları</h2>
+
+                    <h3>5.1 Üyelik Tipi ve Fiyatlandırma</h3>
+                    <p>
+                        Screen Translate Pro üyeliği <strong>aylık otomatik yenilenen abonelik</strong>
+                        olarak sunulur. Bölgesel fiyatlar:
+                    </p>
+                    <ul>
+                        <li><strong>Türkiye:</strong> ₺149.99/ay</li>
+                        <li><strong>ABD:</strong> $6.99/ay</li>
+                        <li><strong>Avrupa Birliği:</strong> €6.99/ay</li>
+                        <li><strong>İngiltere:</strong> £5.99/ay</li>
+                        <li><strong>Diğer ülkeler:</strong> Google Play tarafından bölgesel olarak belirlenir</li>
+                    </ul>
+
+                    <h3>5.2 Ücretsiz Deneme Hakkı</h3>
+                    <p>
+                        Yeni kullanıcılara <strong>5 ücretsiz çeviri</strong> hakkı sunulur. Bu deneme
+                        süresince <em>tüm Pro özelliklerini</em> kullanabilirsiniz (Gemini AI, DeepSeek,
+                        Google Cloud Vision OCR, premium diller dahil).
+                    </p>
+                    <ul>
+                        <li>5 ücretsiz çeviri lifetime'dır (cihaz başına)</li>
+                        <li>Deneme sonrası ML Kit (offline) çeviri ve OCR ücretsiz kullanılmaya devam eder</li>
+                        <li>Premium servisler ve diller Pro üyelik gerektirir</li>
+                    </ul>
+
+                    <h3>5.3 Otomatik Yenileme</h3>
+                    <p>
+                        Pro üyelik <strong>aylık otomatik olarak yenilenir</strong>. Ödeme, mevcut
+                        dönemin bitiminden 24 saat önce Google Play hesabınızdan çekilir.
+                        Yenilemeyi durdurmak için dönemin bitiminden <strong>en az 24 saat önce</strong>
+                        iptal etmelisiniz.
+                    </p>
+
+                    <h3>5.4 İptal Politikası</h3>
+                    <p>İptal işlemi için iki yol vardır:</p>
+                    <ol>
+                        <li>
+                            <strong>Uygulama içinden:</strong> Ayarlar → Pro Üyelik → "Aboneliği Yönet"
+                            butonu ile Google Play abonelik sayfasına yönlendirilirsiniz
+                        </li>
+                        <li>
+                            <strong>Google Play üzerinden:</strong> Play Store → Profil → Abonelikler →
+                            Screen Translate → İptal Et
+                        </li>
+                    </ol>
+                    <p style="margin-top: 1rem;">
+                        <strong>İptal sonrası:</strong> Pro özellikleri mevcut dönemin sonuna kadar
+                        kullanılmaya devam eder. Otomatik para çekme durdurulur.
+                    </p>
+
+                    <h3>5.5 İade Politikası</h3>
+                    <p>
+                        İadeler Google Play'in iade politikasına tabidir:
+                    </p>
+                    <ul>
+                        <li>Satın alma sonrası <strong>48 saat içinde</strong> Google Play üzerinden
+                            kendiniz iade alabilirsiniz</li>
+                        <li>48 saat sonrası iade talepleri için Google Play Destek'e başvurmalısınız</li>
+                        <li>İade onaylanırsa Pro üyeliğiniz <strong>derhal iptal olur</strong> ve özellikler
+                            kaybedilir</li>
+                    </ul>
+
+                    <div class="warning-box">
+                        <h4>📋 Türkiye'de Cayma Hakkı</h4>
+                        <p>
+                            Tüketicinin Korunması Hakkında Kanun gereğince dijital içerik aboneliklerinde
+                            <strong>14 günlük cayma hakkınız vardır</strong>. Bu hak Google Play üzerinden
+                            iade talebi ile kullanılır.
+                        </p>
+                    </div>
+
+                    <h3>5.6 Pro vs Ücretsiz Özellikler</h3>
+                    <table style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
+                        <thead>
+                            <tr style="background: #667eea; color: white;">
+                                <th style="padding: 1rem; text-align: left;">Özellik</th>
+                                <th style="padding: 1rem; text-align: center;">Ücretsiz</th>
+                                <th style="padding: 1rem; text-align: center;">Pro</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td style="padding: 0.8rem; border-bottom: 1px solid #eee;">ML Kit OCR (Latin diller)</td><td style="text-align: center;">✅</td><td style="text-align: center;">✅</td></tr>
+                            <tr><td style="padding: 0.8rem; border-bottom: 1px solid #eee;">ML Kit Çeviri (Offline)</td><td style="text-align: center;">✅</td><td style="text-align: center;">✅</td></tr>
+                            <tr><td style="padding: 0.8rem; border-bottom: 1px solid #eee;">Cloud Vision OCR (50+ dil)</td><td style="text-align: center;">5 deneme</td><td style="text-align: center;">✅</td></tr>
+                            <tr><td style="padding: 0.8rem; border-bottom: 1px solid #eee;">Gemini AI Çeviri</td><td style="text-align: center;">5 deneme</td><td style="text-align: center;">✅</td></tr>
+                            <tr><td style="padding: 0.8rem; border-bottom: 1px solid #eee;">DeepSeek Çeviri</td><td style="text-align: center;">5 deneme</td><td style="text-align: center;">✅</td></tr>
+                            <tr><td style="padding: 0.8rem; border-bottom: 1px solid #eee;">Google Cloud Translate</td><td style="text-align: center;">5 deneme</td><td style="text-align: center;">✅</td></tr>
+                            <tr><td style="padding: 0.8rem; border-bottom: 1px solid #eee;">Premium Diller (Çince, Japonca, Korece vb.)</td><td style="text-align: center;">5 deneme</td><td style="text-align: center;">✅</td></tr>
+                            <tr><td style="padding: 0.8rem;">Reklamsız Deneyim</td><td style="text-align: center;">❌</td><td style="text-align: center;">✅</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="legal-content">
+                    <h2>6. Fikri Mülkiyet Hakları</h2>
+
+                    <h3>6.1 Uygulama Hakları</h3>
+                    <p>
+                        Screen Translate uygulaması, AURSAL'ın fikri mülkiyetidir. Uygulama kodları,
+                        tasarım, algoritmalar ve tüm içerik telif hakkı koruması altındadır.
+                    </p>
+
+                    <h3>6.2 Üçüncü Taraf Teknolojileri</h3>
+                    <p>Uygulama aşağıdaki üçüncü taraf teknolojilerini kullanır:</p>
+                    <ul>
+                        <li><strong>Google ML Kit OCR</strong> (Google LLC) - Metin tanıma</li>
+                        <li><strong>TensorFlow Lite</strong> (Google LLC) - Yapay zeka işleme</li>
+                        <li><strong>Android Jetpack Compose</strong> (Google LLC) - UI framework</li>
+                        <li><strong>Kotlin Programlama Dili</strong> (JetBrains) - Yazılım dili</li>
+                        <li><strong>Google AdMob</strong> (Google LLC) - Reklam hizmetleri</li>
+                        <li><strong>Firebase Remote Config</strong> (Google LLC) - Uygulama yapılandırma</li>
+                    </ul>
+
+                    <div class="highlight-box">
+                        <h4>📋 Üçüncü Taraf Hizmet Kullanımı</h4>
+                        <p>
+                            AdMob ve Firebase hizmetleri, Google LLC tarafından sağlanır ve Google'ın gizlilik
+                            politikalarına tabidir. Bu hizmetler aracılığıyla toplanan veriler Google'ın
+                            veri işleme politikalarına göre işlenir.
+                        </p>
+                        <p style="margin-top: 0.5rem;">
+                            <strong>Detaylı bilgi:</strong>
+                            <a href="https://policies.google.com/privacy" target="_blank" style="color: #667eea;">Google Gizlilik Politikası</a>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="legal-content">
+                    <h2>7. Hizmet Garanti ve Sorumluluk</h2>
+
+                    <h3>7.1 Hizmet Kalitesi</h3>
+                    <p>
+                        AURSAL, Screen Translate uygulamasının mümkün olan en yüksek kalitede hizmet
+                        vermesi için çaba gösterse de, hiçbir yazılım mükemmel değildir. Çeviri
+                        doğruluğu %100 garanti edilemez.
+                    </p>
+
+                    <h3>7.2 Sorumluluk Sınırları</h3>
+                    <p>AURSAL aşağıdaki durumlardan sorumlu değildir:</p>
+                    <ul>
+                        <li>Çeviri hatalarından kaynaklanan yanlış anlaşılmalar</li>
+                        <li>Üçüncü taraf hizmetlerindeki kesintiler</li>
+                        <li>Cihaz uyumluluk sorunları</li>
+                        <li>Kullanıcının yanlış kullanımından kaynaklanan sorunlar</li>
+                        <li>Veri kaybı veya cihaz hasarları</li>
+                    </ul>
+
+                    <div class="warning-box">
+                        <h4>⚠️ Önemli Bilgilendirme</h4>
+                        <p>
+                            Kritik belgelerin çevirisi için profesyonel çeviri hizmetleri kullanmanızı
+                            öneririz. Uygulama yalnızca genel amaçlı kullanım içindir.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="legal-content">
+                    <h2>8. Güncellemeler ve Değişiklikler</h2>
+
+                    <h3>8.1 Uygulama Güncellemeleri</h3>
+                    <p>
+                        AURSAL, uygulamayı geliştirmek ve hata düzeltmeleri yapmak amacıyla düzenli
+                        güncellemeler yayınlayabilir. Güncellemeler otomatik olarak yüklenebilir
+                        veya kullanıcı onayı gerektirebilir.
+                    </p>
+
+                    <h3>8.2 Sözleşme Değişiklikleri</h3>
+                    <p>
+                        Bu sözleşme zaman zaman güncellenebilir. Önemli değişiklikler uygulama
+                        içinde bildirilecektir. Güncellenmiş sözleşmeyi kabul etmezseniz,
+                        uygulamayı kullanmayı bırakmalısınız.
+                    </p>
+                </div>
+
+                <div class="legal-content">
+                    <h2>9. Hizmet Sona Erme</h2>
+
+                    <h3>9.1 Kullanıcı Tarafından Sonlandırma</h3>
+                    <p>
+                        Bu sözleşmeyi istediğiniz zaman uygulamayı cihazınızdan silerek
+                        sonlandırabilirsiniz.
+                    </p>
+
+                    <h3>9.2 AURSAL Tarafından Sonlandırma</h3>
+                    <p>
+                        AURSAL, aşağıdaki durumlarda hizmet sunumunu sonlandırabilir:
+                    </p>
+                    <ul>
+                        <li>Sözleşme şartlarının ihlali</li>
+                        <li>Yasak kullanım tespiti</li>
+                        <li>Teknik sebeplerle hizmetin sürdürülememesi</li>
+                        <li>Yasal zorunluluklar</li>
+                    </ul>
+                </div>
+
+                <div class="legal-content">
+                    <h2>10. Geçerli Hukuk ve Uyuşmazlıklar</h2>
+
+                    <p>
+                        Bu sözleşme Türkiye Cumhuriyeti hukukuna tabidir. Uyuşmazlık durumunda
+                        Türkiye mahkemeleri yetkilidir.
+                    </p>
+
+                    <h3>10.1 Alternatif Uyuşmazlık Çözümü</h3>
+                    <p>
+                        Mahkemeye başvurmadan önce, uyuşmazlıkları dostane şekilde çözmeye
+                        çalışacağımızı taahhüt ediyoruz.
+                    </p>
+                </div>
+
+                <div class="legal-content">
+                    <h2>11. Çeşitli Hükümler</h2>
+
+                    <h3>11.1 Sözleşmenin Bütünlüğü</h3>
+                    <p>
+                        Bu sözleşme, taraflar arasındaki tüm anlaşmayı oluşturur ve önceki
+                        tüm sözlü veya yazılı anlaşmaların yerine geçer.
+                    </p>
+
+                    <h3>11.2 Kısmi Geçersizlik</h3>
+                    <p>
+                        Bu sözleşmenin herhangi bir maddesinin geçersiz sayılması, diğer
+                        maddelerin geçerliliğini etkilemez.
+                    </p>
+
+                    <h3>11.3 Dil</h3>
+                    <p>
+                        Bu sözleşme Türkçe olarak hazırlanmıştır. Çeviri sürümleri arasında
+                        farklılık olması durumunda Türkçe metin esas alınır.
+                    </p>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>📱 Screen Translate v4.0.0</h4>
+                    <p>
+                        Bu kullanıcı sözleşmesi, Screen Translate uygulamasının 4.0.0 ve sonraki
+                        tüm sürümleri için geçerlidir.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-section">
+            <div class="container">
+                <h2>📧 İletişim</h2>
+                <p>Sözleşme ile ilgili sorularınız için bizimle iletişime geçebilirsiniz</p>
+                <div class="contact-info">
+                    <p><strong>Veri Sorumlusu:</strong> AURSAL (Geliştirici)</p>
+                    <p><strong>Proje:</strong> Screen Translate</p>
+                    <p><strong>Platform:</strong> Android</p>
+                    <p><strong>Paket Adı:</strong> com.esarikaya.screentranslate</p>
+                    <p><strong>E-posta:</strong> info@screentranslate.com</p>
+                    <p style="margin-top: 1rem; font-size: 0.9rem;">
+                        KVKK kapsamındaki haklarınızı (m.11) kullanmak için yukarıdaki
+                        email adresine başvurabilirsiniz.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="index.html">Ana Sayfa</a>
+                <a href="hakkimizda.html">Hakkımızda</a>
+                <a href="gizlilik-politikasi.html">Gizlilik Politikası</a>
+            </div>
+            <p>&copy; 2026 <strong>AURSAL</strong> • Screen Translate • Tüm hakları saklıdır</p>
+        </div>
+    </footer>
+</body>
+
+</html>

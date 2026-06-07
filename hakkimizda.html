@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hakkımızda - Screen Translate</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #764ba2;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            width: 35px;
+            height: 35px;
+            border-radius: 8px;
+            object-fit: cover;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #ff6b6b;
+            opacity: 1;
+        }
+
+        .nav-btn {
+            background: #ff6b6b;
+            color: white !important;
+            padding: 0.5rem 1.2rem;
+            border-radius: 25px;
+            transition: all 0.3s ease !important;
+        }
+
+        .nav-btn:hover {
+            background: #ff5252;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+        }
+
+        .hero {
+            padding: 140px 0 80px;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .content {
+            background: white;
+            padding: 80px 0;
+        }
+
+        .content-section {
+            margin-bottom: 3rem;
+        }
+
+        .content-section h2 {
+            font-size: 2.2rem;
+            color: #333;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .content-section h3 {
+            font-size: 1.5rem;
+            color: #667eea;
+            margin-bottom: 1rem;
+            margin-top: 2rem;
+        }
+
+        .content-section p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .team-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid #e0e0e0;
+        }
+
+        .team-card h4 {
+            font-size: 1.3rem;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-card .role {
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .features-timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline-item {
+            display: flex;
+            margin-bottom: 2rem;
+            align-items: flex-start;
+        }
+
+        .timeline-date {
+            background: #667eea;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            min-width: 120px;
+            text-align: center;
+            margin-right: 2rem;
+        }
+
+        .timeline-content {
+            flex: 1;
+        }
+
+        .timeline-content h4 {
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #ff6b6b;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 60px 0;
+            text-align: center;
+            color: white;
+        }
+
+        .cta-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: inline-block;
+            background: #ff6b6b;
+            color: white;
+        }
+
+        .btn:hover {
+            background: #ff5252;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 107, 107, 0.3);
+        }
+
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+
+            .timeline-item {
+                flex-direction: column;
+            }
+
+            .timeline-date {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="https://images.squarespace-cdn.com/content/67eaf5802fa4430becab8e5e/ea424aa9-b006-4062-b0ff-99ad422317e1/screen+translate+ikon.jpg?content-type=image%2Fjpeg" alt="Screen Translate Logo" class="logo-img">
+                <span class="logo-text">Screen Translate</span>
+            </a>
+            <nav class="nav-links">
+                <a href="index.html#modes">Modlar</a>
+                <a href="index.html#features">Özellikler</a>
+                <a href="https://www.screentranslate.com/hakkmzda">Hakkımızda</a>
+                <a href="https://www.screentranslate.com/yardm-ve-sss">Yardım & SSS</a>
+                <a href="https://www.screentranslate.com/gizlilik-politikasi" class="nav-link-sub">Gizlilik</a>
+                <a href="https://www.screentranslate.com/kullanici-sozlesmesi" class="nav-link-sub">Sözleşme</a>
+                <a href="index.html#download" class="nav-btn">İndir</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>🌟 Hakkımızda</h1>
+                <p>Screen Translate'in hikayesi, vizyonu ve ekibimiz hakkında her şeyi öğrenin</p>
+            </div>
+        </section>
+
+        <section class="content">
+            <div class="container">
+                <div class="content-section">
+                    <h2>📱 Screen Translate Nedir?</h2>
+                    <p>
+                        Screen Translate, Android cihazlarda gerçek zamanlı ekran çevirisi sağlayan devrimsel bir
+                        uygulamadır.
+                        Gelişmiş OCR (Optik Karakter Tanıma) ve yapay zeka teknolojilerini kullanarak, ekranınızdaki
+                        herhangi
+                        bir metni anında 50+ dile çevirebilir.
+                    </p>
+                    <p>
+                        Uygulamamız, sosyal medya gönderilerinden web sitelerine, oyunlardan mesajlaşma uygulamalarına
+                        kadar
+                        her türlü içeriği anlık olarak çevirerek dil bariyerlerini ortadan kaldırır.
+                    </p>
+                    <p>
+                        <strong>YENİ:</strong> Chat Mode ile artık WhatsApp, Telegram, Instagram, Discord gibi
+                        mesajlaşma
+                        uygulamalarında kesintisiz gerçek zamanlı çeviri yapabilirsiniz! Erişilebilirlik API'si
+                        sayesinde
+                        ekran görüntüsü almadan, sohbetlerinizi anında çevirebilirsiniz.
+                    </p>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Desteklenen Dil</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">50</div>
+                        <div class="stat-label">OCR Kaynak Dili</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">100K+</div>
+                        <div class="stat-label">Aktif Kullanıcı</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">99%</div>
+                        <div class="stat-label">Doğruluk Oranı</div>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h2>🎯 Misyonumuz</h2>
+                    <p>
+                        Dil bariyerlerini teknoloji ile aşarak, dünya çapında iletişimi kolaylaştırmak ve herkesi
+                        küresel bilgiye erişimde eşit fırsatlar sunmaktır. Screen Translate ile amacımız, dil bilmeyen
+                        kullanıcıların da dijital dünyada özgürce gezinebilmesini sağlamaktır.
+                    </p>
+
+                    <h3>🌟 Vizyonumuz</h3>
+                    <p>
+                        Gelecekte yapay zeka destekli çeviri teknolojilerinde öncü olmak ve evrensel iletişimi
+                        mümkün kılan araçlar geliştirmek. Her Android kullanıcısının, hangi dili konuşursa konuşsun,
+                        dijital içeriklere tam erişim sağlayabilmesini hedefliyoruz.
+                    </p>
+
+                    <h3>💡 Değerlerimiz</h3>
+                    <p>
+                        <strong>Gizlilik:</strong> Kullanıcı verilerinin korunması bizim için en önemli önceliktir.
+                        OCR için ML Kit (yerel) veya Cloud Vision (bulut) seçenekleri sunuyoruz. Çeviri için 3 seçenek: Gemini AI (premium),
+                        Google Cloud (hızlı) ve ML Kit (tamamen çevrimdışı). En yüksek gizlilik için ML Kit OCR + ML Kit çeviri kombinasyonunu seçebilirsiniz.<br><br>
+                        <strong>Kalite:</strong> En yüksek doğrulukta çeviri sonuçları sunmak için sürekli olarak
+                        algoritmalarımızı geliştiriyoruz.<br><br>
+                        <strong>Erişilebilirlik:</strong> Tüm kullanıcı grupları için kolay ve anlaşılır
+                        bir deneyim sunuyoruz.
+                    </p>
+                </div>
+
+                <div class="content-section">
+                    <h2>🚀 Gelişim Sürecimiz</h2>
+                    <div class="features-timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">2023</div>
+                            <div class="timeline-content">
+                                <h4>🎯 Proje Başlangıcı</h4>
+                                <p>Screen Translate projesi, dil bariyerlerini aşma vizyonu ile hayata geçirildi. İlk
+                                    prototip geliştirme çalışmaları başladı.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-date">Erken 2024</div>
+                            <div class="timeline-content">
+                                <h4>🧠 AI Entegrasyonu</h4>
+                                <p>Google ML Kit OCR ve TensorFlow teknolojileri entegre edildi. İlk beta sürüm 5 dil
+                                    desteği ile yayınlandı.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-date">Orta 2024</div>
+                            <div class="timeline-content">
+                                <h4>🌍 Dil Desteği Genişletildi</h4>
+                                <p>Dil desteği 50'ye çıkarıldı - Cloud Vision OCR entegrasyonu ile Avrupa, Asya ve Afrika dillerinde tam destek. Gelişmiş güvenlik filtreleri ve hassas veri koruma
+                                    özellikleri eklendi.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-date">Geç 2024</div>
+                            <div class="timeline-content">
+                                <h4>📱 Android 15 Optimizasyonu</h4>
+                                <p>Android 15 uyumluluğu, 16KB page alignment ve modern API desteği eklendi. Performans
+                                    %40 artırıldı.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-date">Aralık 2024</div>
+                            <div class="timeline-content">
+                                <h4>💬 Chat Mode Lansmanı (v2.1.4)</h4>
+                                <p>Devrim niteliğinde Chat Mode özelliği eklendi! WhatsApp, Telegram, Instagram, Discord
+                                    ve 9+ mesajlaşma uygulamasında Erişilebilirlik API kullanılarak gerçek zamanlı,
+                                    kesintisiz çeviri desteği sağlandı. 3 güçlü çeviri motoru (Gemini AI, Google Cloud Translation,
+                                    ML Kit Offline) ile otomatik yedekleme sistemi entegre edildi.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-date">Mart 2026</div>
+                            <div class="timeline-content">
+                                <h4>📦 Offline Dil Paketi Yönetimi (v3.0.0)</h4>
+                                <p>ML Kit için offline çeviri dil paketleri manuel yönetim özelliği eklendi. 28 dil için çevrimdışı çeviri desteği. Kapsamlı kod temizliği ile 5,800+ satır gereksiz kod kaldırıldı - %40 daha hızlı başlatma. Android 16 uyumluluğu tamamlandı.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h2>👥 Geliştirici Ekibimiz</h2>
+                    <p>
+                        Screen Translate, deneyimli geliştiriciler ve AI uzmanlarından oluşan tutkulu bir ekip
+                        tarafından geliştirilmektedir.
+                    </p>
+
+                    <div class="team-grid">
+                        <div class="team-card">
+                            <h4>🧑‍💻 AURSAL Team</h4>
+                            <div class="role">Ana Geliştirici</div>
+                            <p>Android uygulama geliştirme, AI/ML teknolojileri ve kullanıcı deneyimi tasarımında
+                                uzmanlaşmış.</p>
+                        </div>
+
+                        <div class="team-card">
+                            <h4>🔬 AI Research Team</h4>
+                            <div class="role">Yapay Zeka Uzmanları</div>
+                            <p>OCR teknolojileri, dil modelleri ve performans optimizasyonları konularında araştırma
+                                yapıyor.</p>
+                        </div>
+
+                        <div class="team-card">
+                            <h4>🛡️ Security Team</h4>
+                            <div class="role">Güvenlik Uzmanları</div>
+                            <p>Kullanıcı gizliliği, veri koruma ve güvenli uygulama mimarisi konularında çalışıyor.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h2>🔧 Teknik Mükemmellik</h2>
+                    <h3>🚀 İleri Teknoloji</h3>
+                    <p>
+                        Screen Translate, Google'ın ML Kit teknolojisi ve TensorFlow Lite GPU hızlandırması kullanarak
+                        endüstrinin en hızlı ve doğru OCR performansını sunar. Kotlin ve Jetpack Compose ile modern
+                        Android geliştirme standartlarında kodlanmıştır.
+                    </p>
+
+                    <h3>🔒 Güvenlik Önceliği</h3>
+                    <p>
+                        Kullanıcı gizliliğini korumak için ML Kit ile yerel işleme seçeneği sunulur.
+                        Hassas veri filtreleri, sosyal medya koruma özellikleri ve güvenli MediaProjection API
+                        kullanımı ile verileriniz korunur.
+                    </p>
+
+                    <h3>⚡ Performans Optimizasyonu</h3>
+                    <p>
+                        Android 15 ve 16'nın 16KB page alignment özelliği için özel olarak optimize edilmiş uygulama,
+                        minimum sistem kaynak kullanımı ile maksimum performans sağlar. GPU hızlandırması sayesinde
+                        çeviri süreleri milisaniyelerle ölçülür.
+                    </p>
+                    <p>
+                        <strong>Kod Optimizasyonu:</strong> Mart 2026'da kapsamlı kod temizliği ile 5,800+ satır gereksiz kod kaldırıldı. %40 daha hızlı başlatma, daha az bellek kullanımı ve gelişmiş kararlılık.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container">
+                <h2>🚀 Screen Translate'i Deneyin</h2>
+                <p>Dil bariyerlerini aşmanın en kolay yolunu keşfedin</p>
+                <a href="https://play.google.com/store/apps/details?id=com.esarikaya.screentranslate" target="_blank"
+                    class="btn">📱 Google Play'den İndirin</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="index.html">Ana Sayfa</a>
+                <a href="gizlilik-politikasi.html">Gizlilik Politikası</a>
+                <a href="kullanici-sozlesmesi.html">Kullanıcı Sözleşmesi</a>
+            </div>
+            <p>&copy; 2026 <strong>AURSAL</strong> • Screen Translate • Tüm hakları saklıdır</p>
+        </div>
+    </footer>
+</body>
+
+</html>

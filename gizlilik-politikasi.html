@@ -1,0 +1,1942 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gizlilik Politikası - Screen Translate</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #764ba2;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            width: 35px;
+            height: 35px;
+            border-radius: 8px;
+            object-fit: cover;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #ff6b6b;
+            opacity: 1;
+        }
+
+        .nav-btn {
+            background: #ff6b6b;
+            color: white !important;
+            padding: 0.5rem 1.2rem;
+            border-radius: 25px;
+            transition: all 0.3s ease !important;
+        }
+
+        .nav-btn:hover {
+            background: #ff5252;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+        }
+
+        .hero {
+            padding: 140px 0 80px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="1" fill="white" opacity="0.1"/><circle cx="10" cy="60" r="1" fill="white" opacity="0.1"/><circle cx="90" cy="40" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            font-weight: 300;
+        }
+
+        .update-badge {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            display: inline-block;
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .privacy-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .stat-item {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .stat-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .stat-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-desc {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .content {
+            background: white;
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: linear-gradient(180deg, rgba(102, 126, 234, 0.1) 0%, transparent 100%);
+        }
+
+
+        .privacy-section {
+            margin-bottom: 4rem;
+            scroll-margin-top: 120px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            color: white;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .section-icon {
+            font-size: 2.5rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .section-title {
+            flex: 1;
+        }
+
+        .section-title h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title p {
+            opacity: 0.9;
+            font-size: 1rem;
+        }
+
+        .content-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 2rem;
+            border: 1px solid #e9ecef;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .content-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .content-card h3 {
+            font-size: 1.4rem;
+            color: #667eea;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .content-card h3::before {
+            content: attr(data-icon);
+            font-size: 1.2rem;
+            padding: 0.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 10px;
+        }
+
+        .content-card p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .content-card ul,
+        .content-card ol {
+            margin: 1.5rem 0 1.5rem 2rem;
+        }
+
+        .content-card li {
+            margin-bottom: 0.8rem;
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        .data-protection-visual {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            padding: 3rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .data-protection-visual::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="shield" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M25,10 L35,15 L25,40 L15,15 Z" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23shield)"/></svg>');
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .data-protection-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .data-table-container {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin: 2rem 0;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .data-table th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .data-table td {
+            padding: 1.5rem;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 1rem;
+        }
+
+        .data-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .status-badge {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-block;
+        }
+
+        .status-collect {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .status-not-collect {
+            background: #d1fae5;
+            color: #059669;
+        }
+
+        .status-local {
+            background: #dbeafe;
+            color: #2563eb;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .feature-card {
+            background: white;
+            border: 2px solid #f0f0f0;
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            border-color: #667eea;
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .feature-title {
+            font-size: 1.3rem;
+            color: #333;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .feature-desc {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .app-mockup {
+            text-align: center;
+            margin: 3rem 0;
+            padding: 3rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 30px;
+            border: 1px solid #dee2e6;
+        }
+
+        .mockup-phones {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+
+        .phone-mockup {
+            width: 200px;
+            height: 400px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 30px;
+            padding: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: #1a1a1a;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 0.8rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .phone-screen::before {
+            content: '📱';
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .phone-1 .phone-screen::after {
+            content: 'Gerçek Zamanlı\\A OCR Tarama';
+            white-space: pre;
+            font-weight: 600;
+        }
+
+        .phone-2 .phone-screen::after {
+            content: 'Anlık Çeviri\\A 50+ Dil';
+            white-space: pre;
+            font-weight: 600;
+        }
+
+        .phone-3 .phone-screen::after {
+            content: 'Gizlilik Korumalı\\A Yerel İşleme';
+            white-space: pre;
+            font-weight: 600;
+        }
+
+        .interactive-demo {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem;
+            border-radius: 30px;
+            text-align: center;
+            margin: 3rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .demo-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .demo-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .demo-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .demo-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .demo-feature {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: left;
+        }
+
+        .demo-feature h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .warning-card {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+            color: #2d3436;
+            padding: 2rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            border-left: 6px solid #f39c12;
+            box-shadow: 0 10px 25px rgba(243, 156, 18, 0.2);
+        }
+
+        .warning-card h4 {
+            color: #2d3436;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .contact-section {
+            background: linear-gradient(135deg, #2d3436 0%, #636e72 100%);
+            padding: 60px 0;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .contact-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .contact-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 3rem;
+        }
+
+        .contact-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .contact-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #74b9ff;
+        }
+
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 3rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            background: rgba(102, 126, 234, 0.2);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 2rem;
+            text-align: center;
+            color: #999;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+
+            .mockup-phones {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .phone-mockup {
+                width: 150px;
+                height: 300px;
+            }
+
+
+            .data-table {
+                font-size: 0.9rem;
+            }
+
+            .data-table th,
+            .data-table td {
+                padding: 1rem;
+            }
+        }
+
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            z-index: 9999;
+        }
+
+        .scroll-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="scroll-indicator">
+        <div class="scroll-progress" id="scrollProgress"></div>
+    </div>
+
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="https://images.squarespace-cdn.com/content/67eaf5802fa4430becab8e5e/ea424aa9-b006-4062-b0ff-99ad422317e1/screen+translate+ikon.jpg?content-type=image%2Fjpeg" alt="Screen Translate Logo" class="logo-img">
+                <span class="logo-text">Screen Translate</span>
+            </a>
+            <nav class="nav-links">
+                <a href="index.html#modes">Modlar</a>
+                <a href="index.html#features">Özellikler</a>
+                <a href="https://www.screentranslate.com/hakkmzda">Hakkımızda</a>
+                <a href="https://www.screentranslate.com/yardm-ve-sss">Yardım & SSS</a>
+                <a href="https://www.screentranslate.com/gizlilik-politikasi" class="nav-link-sub">Gizlilik</a>
+                <a href="https://www.screentranslate.com/kullanici-sozlesmesi" class="nav-link-sub">Sözleşme</a>
+                <a href="index.html#download" class="nav-btn">İndir</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>🔐 Gizlilik Politikası</h1>
+                    <p class="hero-subtitle">
+                        Screen Translate'de kullanıcı gizliliği ve veri koruma yaklaşımımız.
+                        ML Kit ile verileriniz cihazınızda kalır, Gemini/Cloud ile şeffaf bulut işleme.
+                    </p>
+                    <div class="update-badge">
+                        📅 Son Güncelleme: 24 Mayıs 2026 (v4.0.0 - Major Release)
+                    </div>
+
+                    <div class="privacy-stats">
+                        <div class="stat-item">
+                            <div class="stat-icon">🔒</div>
+                            <div class="stat-title">ML Kit: Yerel OCR Seçeneği</div>
+                            <div class="stat-desc">Tamamen cihazınızda işleme</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon">🚫</div>
+                            <div class="stat-title">Çeviriler Saklanmaz</div>
+                            <div class="stat-desc">İçerikleriniz hiç kayıt edilmez</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon">🛡️</div>
+                            <div class="stat-title">Hassas Veri Koruması</div>
+                            <div class="stat-desc">Otomatik güvenlik filtreleri</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon">⚡</div>
+                            <div class="stat-title">Şeffaf Politika</div>
+                            <div class="stat-desc">Tüm veri kullanımı açıklanır</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content">
+            <div class="container">
+
+                <div class="privacy-section" id="overview">
+                    <div class="section-header">
+                        <div class="section-icon">🎯</div>
+                        <div class="section-title">
+                            <h2>Gizlilik Politikası Özeti</h2>
+                            <p>Screen Translate'in gizlilik yaklaşımının temelleri</p>
+                        </div>
+                    </div>
+
+                    <div class="content-card">
+                        <h3 data-icon="🔒">Temel Gizlilik Prensiplerimiz</h3>
+                        <p>
+                            AURSAL olarak, Screen Translate uygulamasında kullanıcı gizliliğini korumak
+                            bizim için en önemli önceliktir. Uygulamamız "Privacy by Design" (Tasarımda Gizlilik)
+                            prensibiyle geliştirilmiş ve tüm veri işleme süreçleri kullanıcı gizliliğini
+                            koruyacak şekilde tasarlanmıştır.
+                        </p>
+
+                        <div class="data-protection-visual">
+                            <div class="data-protection-content">
+                                <h4>🛡️ Gizlilik Garantilerimiz</h4>
+                                <div class="feature-grid">
+                                    <div class="feature-card">
+                                        <div class="feature-icon">🏠</div>
+                                        <div class="feature-title">Yerel Seçenek Mevcut</div>
+                                        <div class="feature-desc">ML Kit OCR ve çeviri ile tamamen cihazınızda işleme yapabilirsiniz
+                                        </div>
+                                    </div>
+                                    <div class="feature-card">
+                                        <div class="feature-icon">🚫</div>
+                                        <div class="feature-title">Çeviriler Saklanmaz</div>
+                                        <div class="feature-desc">Çevrilen metinler hiçbir yerde kayıt edilmez</div>
+                                    </div>
+                                    <div class="feature-card">
+                                        <div class="feature-icon">🔐</div>
+                                        <div class="feature-title">Şifrelenmiş Ayarlar</div>
+                                        <div class="feature-desc">Yerel ayarlar AES-256 ile korunur</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="warning-card">
+                            <h4>ℹ️ Önemli Bilgi</h4>
+                            <p>
+                                Screen Translate, kullanıcı hesabı gerektirmez ve hiçbir kayıt işlemi yoktur.
+                                Kişisel kimlik bilgileriniz (isim, e-posta, telefon) hiçbir şekilde toplanmaz.
+                            </p>
+                            <p style="margin-top: 1rem;">
+                                <strong>Ancak:</strong> Ücretsiz hizmet sunabilmek için Google AdMob reklamları kullanılır ve
+                                AdMob tarafından belirli teknik veriler (Reklam ID, IP adresi) toplanır. Detaylar aşağıda açıklanmıştır.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ERİŞİLEBİLİRLİK HİZMETİ BÖLÜMÜ -->
+                <div class="privacy-section" id="accessibility-service">
+                    <div class="section-header" style="background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);">
+                        <div class="section-icon">⚠️</div>
+                        <div class="section-title">
+                            <h2>Erişilebilirlik Hizmeti (AccessibilityService) Kullanımı</h2>
+                            <p>Sohbet Modu için özel izin ve veri işleme açıklaması</p>
+                        </div>
+                    </div>
+
+                    <div class="content-card" style="border: 3px solid #ff6b6b;">
+                        <h3 data-icon="💬">Sohbet Modu ve Erişilebilirlik API</h3>
+                        <p>
+                            Screen Translate'in <strong>Sohbet Modu</strong> özelliği, mesajlaşma uygulamalarındaki
+                            (WhatsApp, Telegram, Instagram, vb.) metinleri okuyabilmek için Android Erişilebilirlik
+                            Hizmeti API'sini kullanır. Bu kullanım aşağıdaki şekilde gerçekleşir:
+                        </p>
+
+                        <div class="warning-card"
+                            style="background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);">
+                            <h4>📋 Erişilebilirlik Hizmeti Ne İçin Kullanılır?</h4>
+                            <ul>
+                                <li><strong>Metin Okuma:</strong> Aktif sohbet penceresindeki mesaj metinlerini okur
+                                </li>
+                                <li><strong>Gerçek Zamanlı Çeviri:</strong> Gelen ve giden mesajları anında çevirir</li>
+                                <li><strong>Klavye Algılama:</strong> Yazım alanını tespit ederek çeviri alanından hariç
+                                    tutar</li>
+                                <li><strong>Odak Takibi:</strong> Aktif mesajlaşma uygulamasını takip eder</li>
+                            </ul>
+                        </div>
+
+                        <div class="data-protection-visual"
+                            style="background: linear-gradient(135deg, #28a745 0%, #20c997 100%);">
+                            <div class="data-protection-content">
+                                <h4>🛡️ Erişilebilirlik Verilerinin Korunması</h4>
+                                <div class="feature-grid">
+                                    <div class="feature-card">
+                                        <div class="feature-icon">🚫</div>
+                                        <div class="feature-title">Veri Kaydetmez</div>
+                                        <div class="feature-desc">Okunan metinler hiçbir yerde saklanmaz</div>
+                                    </div>
+                                    <div class="feature-card">
+                                        <div class="feature-icon">🔒</div>
+                                        <div class="feature-title">Sunucuya Göndermez</div>
+                                        <div class="feature-desc">Erişilebilirlik verileri sunucuya aktarılmaz</div>
+                                    </div>
+                                    <div class="feature-card">
+                                        <div class="feature-icon">⚡</div>
+                                        <div class="feature-title">Anlık Silme</div>
+                                        <div class="feature-desc">İşlem sonrası tüm veriler silinir</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h3 data-icon="🔧" style="margin-top: 2rem;">Ne Zaman Aktif?</h3>
+                        <p>
+                            Erişilebilirlik Hizmeti <strong>yalnızca Sohbet Modu</strong> seçili olduğunda aktif olur.
+                            Diğer 4 mod (Varsayılan, Dokunma, Oyun, Sosyal Medya) bu hizmeti kullanmaz ve sadece
+                            MediaProjection (ekran yakalama) ile çalışır.
+                        </p>
+
+                        <div class="data-table-container">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>🎮 Mod</th>
+                                        <th>📷 Ekran Yakalama</th>
+                                        <th>♿ Erişilebilirlik API</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Varsayılan Mod</strong></td>
+                                        <td><span class="status-badge status-collect">✅ Kullanır</span></td>
+                                        <td><span class="status-badge status-not-collect">❌ Kullanmaz</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Dokunma Modu</strong></td>
+                                        <td><span class="status-badge status-collect">✅ Kullanır</span></td>
+                                        <td><span class="status-badge status-not-collect">❌ Kullanmaz</span></td>
+                                    </tr>
+                                    <tr style="background: linear-gradient(135deg, #fff0f0 0%, #ffe0e0 100%);">
+                                        <td><strong>Sohbet Modu ⚡</strong></td>
+                                        <td><span class="status-badge status-not-collect">❌ Kullanmaz</span></td>
+                                        <td><span class="status-badge status-collect">✅ Kullanır</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Oyun Modu</strong></td>
+                                        <td><span class="status-badge status-collect">✅ Kullanır</span></td>
+                                        <td><span class="status-badge status-not-collect">❌ Kullanmaz</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Sosyal Medya Modu</strong></td>
+                                        <td><span class="status-badge status-collect">✅ Kullanır</span></td>
+                                        <td><span class="status-badge status-not-collect">❌ Kullanmaz</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="warning-card">
+                            <h4>⚠️ Erişilebilirlik İzni Hakkında Önemli Bilgi</h4>
+                            <p>
+                                Android'in Erişilebilirlik Hizmeti, geniş kapsamlı izinler gerektiren hassas bir
+                                API'dir.
+                                Screen Translate bu izni <strong>yalnızca mesaj metinlerini okumak</strong> için
+                                kullanır.
+                                Uygulama, bu izinleri asla kötüye kullanmaz ve aşağıdaki eylemleri gerçekleştirmez:
+                            </p>
+                            <ul>
+                                <li>❌ Şifrelerinizi kaydetmez veya okumaz</li>
+                                <li>❌ Banka bilgilerinize erişmez</li>
+                                <li>❌ Kişisel verilerinizi sunuculara göndermez</li>
+                                <li>❌ Arka planda gizli işlemler yapmaz</li>
+                                <li>❌ Diğer uygulamalara müdahale etmez</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="app-mockup">
+                    <h3>📱 Screen Translate'in Gizlilik Odaklı Tasarımı</h3>
+                    <p>Uygulamanın her aşaması kullanıcı gizliliğini koruyacak şekilde tasarlandı</p>
+
+                    <div class="mockup-phones">
+                        <div class="phone-mockup phone-1">
+                            <div class="phone-screen"></div>
+                        </div>
+                        <div class="phone-mockup phone-2">
+                            <div class="phone-screen"></div>
+                        </div>
+                        <div class="phone-mockup phone-3">
+                            <div class="phone-screen"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="privacy-section" id="data-collection">
+                    <div class="section-header">
+                        <div class="section-icon">📊</div>
+                        <div class="section-title">
+                            <h2>Toplanan Veriler</h2>
+                            <p>Hangi verilerin toplandığı ve hangilerinin toplanmadığının detaylı analizi</p>
+                        </div>
+                    </div>
+
+                    <div class="content-card">
+                        <h3 data-icon="📋">Veri Toplama Tablosu</h3>
+                        <p>
+                            Screen Translate uygulaması, gizlilik öncelikli tasarım ilkesiyle geliştirilmiştir.
+                            Aşağıdaki tablo hangi verilerin toplandığını ve hangilerinin toplanmadığını detaylı şekilde
+                            gösterir:
+                        </p>
+
+                        <div class="data-table-container">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>🗂️ Veri Türü</th>
+                                        <th>📊 Durum</th>
+                                        <th>💡 Açıklama</th>
+                                        <th>🔒 Güvenlik</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Çevrilen Metinler</strong></td>
+                                        <td><span class="status-badge status-not-collect">❌ Toplanmaz</span></td>
+                                        <td>ML Kit: yerel, Gemini/Google: anlık işlenir ve saklanmaz</td>
+                                        <td>Anında silinir</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Ekran Görüntüleri</strong></td>
+                                        <td><span class="status-badge status-not-collect">❌ Saklanmaz</span></td>
+                                        <td>Yalnızca anlık OCR işleme için kullanılır</td>
+                                        <td>Geçici bellek</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Kişisel Kimlik Bilgileri</strong></td>
+                                        <td><span class="status-badge status-not-collect">❌ Toplanmaz</span></td>
+                                        <td>Ad, e-posta, telefon gibi bilgiler hiç istenmez</td>
+                                        <td>Uygulama erişimi yok</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Uygulama Ayarları</strong></td>
+                                        <td><span class="status-badge status-local">📱 Yerel</span></td>
+                                        <td>Dil tercihleri, tema ayarları sadece cihazda</td>
+                                        <td>AES-256 şifreleme</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Hata Raporları</strong></td>
+                                        <td><span class="status-badge status-collect">⚠️ Anonim</span></td>
+                                        <td>Uygulama iyileştirme için kimlik içermeyen veriler</td>
+                                        <td>Hash ile anonimleştirme</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Konum Bilgisi</strong></td>
+                                        <td><span class="status-badge status-not-collect">❌ Erişim Yok</span></td>
+                                        <td>GPS veya konum verilerine hiç erişim yok</td>
+                                        <td>Sistem seviyesi blok</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Cihaz Bilgileri</strong></td>
+                                        <td><span class="status-badge status-local">🔧 Teknik</span></td>
+                                        <td>Android sürümü, model (sadece uyumluluk için)</td>
+                                        <td>Yerel sistem API</td>
+                                    </tr>
+                                    <tr style="background-color: #fff3cd;">
+                                        <td><strong>Reklam ID (AdMob)</strong></td>
+                                        <td><span class="status-badge status-collect">✅ Toplanır</span></td>
+                                        <td>Google AdMob tarafından reklam gösterimi için</td>
+                                        <td>Google gizlilik politikası</td>
+                                    </tr>
+                                    <tr style="background-color: #fff3cd;">
+                                        <td><strong>IP Adresi (AdMob)</strong></td>
+                                        <td><span class="status-badge status-collect">✅ Toplanır</span></td>
+                                        <td>Yaklaşık konum ve reklam hedefleme için</td>
+                                        <td>Google AdMob</td>
+                                    </tr>
+                                    <tr style="background-color: #fff3cd;">
+                                        <td><strong>Reklam Etkileşimleri</strong></td>
+                                        <td><span class="status-badge status-collect">✅ Toplanır</span></td>
+                                        <td>Reklam görüntüleme, tıklama verileri</td>
+                                        <td>Google Analytics</td>
+                                    </tr>
+                                    <tr style="background-color: #e7f3ff;">
+                                        <td><strong>Uygulama Yapılandırması</strong></td>
+                                        <td><span class="status-badge status-collect">✅ Alınır</span></td>
+                                        <td>Firebase Remote Config - Özellik yönetimi</td>
+                                        <td>Google Firebase</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="warning-card" style="margin-top: 2rem;">
+                        <h4>⚠️ Önemli Bilgilendirme: Veri İşleme ve Gizlilik</h4>
+                        <p>
+                            <strong>OCR (metin tanıma): ML Kit OCR cihazınızda, Cloud Vision OCR bulutta yapılır.</strong>
+                            Çeviri işlemleri için 4 farklı motor sunulmaktadır:
+                        </p>
+                        <ul style="margin: 1rem 0; padding-left: 1.5rem;">
+                            <li><strong>Gemini AI:</strong> Çevrilecek metin Google sunucularına gönderilir (en yüksek kalite)</li>
+                            <li><strong>DeepSeek:</strong> Çevrilecek metin DeepSeek sunucularına gönderilir (alternatif AI çeviri)</li>
+                            <li><strong>Google Cloud Translation:</strong> Çevrilecek metin Google Cloud'a gönderilir (hızlı ve güvenilir)</li>
+                            <li><strong>ML Kit (Offline):</strong> Çeviri tamamen cihazınızda yapılır, hiçbir veri gönderilmez (maksimum gizlilik)</li>
+                        </ul>
+                        <p>
+                            Uygulama ayarlarından <strong>hangi çeviri motorunu kullanacağınızı seçebilirsiniz</strong>.
+                            Gizlilik odaklıysanız, ML Kit (Offline) motorunu seçerek verilerinizin cihazınızdan çıkmamasını sağlayabilirsiniz.
+                        </p>
+                        <p style="margin-top: 1rem;">
+                            Ek olarak, uygulamayı ücretsiz sunabilmek için <strong>Google AdMob</strong> reklam sistemi kullanılmaktadır.
+                            AdMob, reklam gösterimi için belirli teknik verileri (Reklam ID, IP adresi, cihaz bilgileri) toplar.
+                            Bu veriler <strong>sadece reklam gösterimi</strong> için kullanılır ve çevirilerinizle hiçbir ilişkisi yoktur.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- YENİ BÖLÜM: PRO ÜYELİK VE FATURALAMA VERİLERİ -->
+                <div class="content-card">
+                    <h3 data-icon="💎">Pro Üyelik ve Faturalama Verileri</h3>
+                    <p>
+                        Pro üyelik özelliği <strong>Google Play Billing</strong> üzerinden işletilir.
+                        Bu hizmet için herhangi bir kullanıcı hesabı oluşturmanıza gerek yoktur — aboneliğiniz
+                        Google Play hesabınıza bağlıdır.
+                    </p>
+
+                    <h4 style="color: #667eea; margin-top: 1.5rem;">Topladığımız Veriler</h4>
+                    <ul>
+                        <li>
+                            <strong>Satın Alma Token'ı (Purchase Token):</strong> Google Play tarafından
+                            üretilen, aboneliğinizin geçerli olduğunu kanıtlayan benzersiz bir kod.
+                            <em>Bu bir kişisel veri DEĞİLDİR</em> — sadece abonelik kanıtıdır. Sunucumuza
+                            iletilir ve Google Play Developer API üzerinden doğrulanır.
+                        </li>
+                        <li>
+                            <strong>Anonim Cihaz Kimliği (SHA-256 Hash):</strong> Ücretsiz deneme hakkı
+                            (5 çeviri) takibi için Android ID + paket adı kombinasyonundan üretilen
+                            tek yönlü kriptografik hash. Bu değer <em>geri çevrilemez</em> ve sizi
+                            kişisel olarak tanımlayamaz.
+                        </li>
+                        <li>
+                            <strong>Uygulama Sürümü:</strong> Hata ayıklama ve sürüm uyumluluğu için
+                            sunucu loglarına eklenir.
+                        </li>
+                        <li>
+                            <strong>Yakalama Oturum Kimliği (UUID):</strong> Her ekran yakalama için
+                            otomatik üretilen geçici kimlik. Sadece oturum sırasında geçerlidir,
+                            saklanmaz.
+                        </li>
+                    </ul>
+
+                    <h4 style="color: #667eea; margin-top: 1.5rem;">Toplamadığımız Veriler</h4>
+                    <ul>
+                        <li>❌ Kredi kartı / banka bilgileri (Google Play tarafından işlenir)</li>
+                        <li>❌ Ad, soyad, email gibi kişisel bilgiler</li>
+                        <li>❌ Adres, telefon numarası</li>
+                        <li>❌ Konum bilgisi</li>
+                        <li>❌ Cihaz benzersiz tanımlayıcıları (IMEI, MAC adresi vb.)</li>
+                    </ul>
+
+                    <div class="warning-box" style="background: #e8f5e9; border-color: #4caf50;">
+                        <h4 style="color: #2e7d32;">🔒 KVKK ve GDPR Uyumluluğu</h4>
+                        <p style="color: #2e7d32;">
+                            Toplanan veriler tek başlarına sizi tanımlayamaz. KVKK m.5/2-c (sözleşmenin
+                            ifası için zorunlu) kapsamında işlenir. Açık rıza gerekmez.
+                            Verilerinizin silinmesini istemek için uygulamayı kaldırmanız yeterlidir.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="content-card">
+                    <h3 data-icon="💳">Ödeme Sürecinde Veri Akışı</h3>
+                    <p>
+                        Pro üyelik satın alma işlemi <strong>tamamen Google Play tarafından</strong>
+                        yürütülür. AURSAL hiçbir aşamada finansal verilerinize erişemez.
+                    </p>
+
+                    <h4 style="color: #667eea; margin-top: 1.5rem;">Veri Akışı</h4>
+                    <ol>
+                        <li>Siz uygulamada "Pro Ol" butonuna basarsınız</li>
+                        <li>Google Play, kendi güvenli ödeme sistemini açar</li>
+                        <li>Kredi kartı / Play kredisi bilgilerinizi <strong>Google Play'e</strong> verirsiniz</li>
+                        <li>Google Play ödemeyi işler ve size benzersiz bir "Satın Alma Token'ı" verir</li>
+                        <li>Uygulamamız bu token'ı <strong>sunucumuza (Cloud Run, Avrupa)</strong> iletir</li>
+                        <li>Sunucumuz Google Play Developer API'den token'ı doğrular</li>
+                        <li>Doğrulama başarılıysa Pro özellikleri açılır</li>
+                    </ol>
+
+                    <p style="margin-top: 1rem;">
+                        <strong>Sonuç:</strong> Sunucumuz sadece "Bu kullanıcı geçerli bir aboneliğe
+                        sahip mi?" sorusuna evet/hayır cevabı alır. Ödeme tutarı, kart bilgisi gibi
+                        veriler hiçbir zaman bizimle paylaşılmaz.
+                    </p>
+                </div>
+
+                <!-- YENİ BÖLÜM: ÜÇÜNCÜ TARAF HİZMETLERİ -->
+                <div class="privacy-section" id="third-party-services">
+                    <div class="section-header" style="background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);">
+                        <div class="section-icon">🔗</div>
+                        <div class="section-title">
+                            <h2>Üçüncü Taraf Hizmetleri</h2>
+                            <p>Uygulama tarafından kullanılan harici servisler ve veri işleme politikaları</p>
+                        </div>
+                    </div>
+
+                    <div class="content-card" style="border: 3px solid #f39c12;">
+                        <h3 data-icon="📺">Google AdMob (Reklam Hizmetleri)</h3>
+                        <p>
+                            Screen Translate, ücretsiz hizmet sunabilmek için <strong>Google AdMob</strong> reklam platformunu kullanır.
+                            AdMob, reklam gösterimi ve kişiselleştirilmiş reklam deneyimi sağlamak için belirli verileri toplar.
+                        </p>
+
+                        <h4 style="margin-top: 2rem; color: #e67e22;">📊 AdMob Tarafından Toplanan Veriler:</h4>
+                        <div class="feature-grid">
+                            <div class="feature-card">
+                                <div class="feature-icon">🆔</div>
+                                <div class="feature-title">Reklam Kimliği</div>
+                                <div class="feature-desc">Android Advertising ID - Kişiselleştirilmiş reklamlar için kullanılır</div>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">🌐</div>
+                                <div class="feature-title">IP Adresi</div>
+                                <div class="feature-desc">Yaklaşık konum belirleme ve reklam hedefleme için</div>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">📱</div>
+                                <div class="feature-title">Cihaz Bilgileri</div>
+                                <div class="feature-desc">Model, marka, OS sürümü, ekran çözünürlüğü</div>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">👆</div>
+                                <div class="feature-title">Reklam Etkileşimleri</div>
+                                <div class="feature-desc">Görüntüleme, tıklama ve etkileşim verileri</div>
+                            </div>
+                        </div>
+
+                        <h4 style="margin-top: 2rem; color: #e67e22;">🎯 Veri Kullanım Amaçları:</h4>
+                        <ul>
+                            <li>Kişiselleştirilmiş reklam gösterimi</li>
+                            <li>Reklam performansı analizi</li>
+                            <li>Dolandırıcılık tespiti ve önleme</li>
+                            <li>Reklam ölçümleme ve raporlama</li>
+                        </ul>
+
+                        <h4 style="margin-top: 2rem; color: #e67e22;">🔒 Veri İşleyici:</h4>
+                        <p><strong>Google LLC</strong> (1600 Amphitheatre Parkway, Mountain View, CA 94043, USA)</p>
+
+                        <h4 style="margin-top: 2rem; color: #28a745;">✅ Kullanıcı Kontrol Seçenekleri:</h4>
+                        <div class="data-protection-visual" style="background: linear-gradient(135deg, #28a745 0%, #20c997 100%);">
+                            <div class="data-protection-content">
+                                <div class="feature-grid">
+                                    <div class="feature-card">
+                                        <div class="feature-icon">🔄</div>
+                                        <div class="feature-title">Reklam ID Sıfırlama</div>
+                                        <div class="feature-desc">Android Ayarlar > Google > Reklamlar > Reklam ID'nizi sıfırlayın</div>
+                                    </div>
+                                    <div class="feature-card">
+                                        <div class="feature-icon">🚫</div>
+                                        <div class="feature-title">Kişiselleştirilmiş Reklamları Devre Dışı Bırakma</div>
+                                        <div class="feature-desc">Android Ayarlar > Google > Reklamlar > Kişiselleştirilmiş reklamları kapat</div>
+                                    </div>
+                                    <div class="feature-card">
+                                        <div class="feature-icon">📜</div>
+                                        <div class="feature-title">Google Gizlilik Seçenekleri</div>
+                                        <div class="feature-desc">myaccount.google.com adresinden reklam tercihlerinizi yönetin</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="warning-card" style="margin-top: 2rem;">
+                            <h4>📚 Detaylı Bilgi İçin:</h4>
+                            <ul>
+                                <li><strong>Google AdMob Gizlilik Politikası:</strong> <a href="https://support.google.com/admob/answer/6128543" target="_blank" style="color: #0066cc;">https://support.google.com/admob/answer/6128543</a></li>
+                                <li><strong>Google Gizlilik Politikası:</strong> <a href="https://policies.google.com/privacy" target="_blank" style="color: #0066cc;">https://policies.google.com/privacy</a></li>
+                                <li><strong>Google Reklam Kişiselleştirme:</strong> <a href="https://adssettings.google.com" target="_blank" style="color: #0066cc;">https://adssettings.google.com</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="content-card" style="border: 3px solid #3498db; margin-top: 2rem;">
+                        <h3 data-icon="🔧">Firebase Remote Config</h3>
+                        <p>
+                            Uygulama özelliklerini ve ayarlarını uzaktan yönetebilmek için <strong>Firebase Remote Config</strong> hizmeti kullanılır.
+                        </p>
+
+                        <h4 style="margin-top: 2rem; color: #3498db;">📊 Toplanan Veriler:</h4>
+                        <ul>
+                            <li><strong>Uygulama Sürümü:</strong> Hangi özelliklerinizin gösterileceğini belirlemek için</li>
+                            <li><strong>Dil Tercihi:</strong> Yapılandırma değerlerini doğru dilde sunmak için</li>
+                            <li><strong>Ülke Kodu:</strong> IP tabanlı yaklaşık konum (hassas konum DEĞİL)</li>
+                            <li><strong>Cihaz Türü:</strong> Android sürümü ve cihaz kategorisi</li>
+                        </ul>
+
+                        <h4 style="margin-top: 2rem; color: #3498db;">🎯 Kullanım Amaçları:</h4>
+                        <ul>
+                            <li>Uygulama ayarlarını uzaktan güncelleme</li>
+                            <li>Yeni özellikleri aşamalı olarak açma/kapama</li>
+                            <li>A/B testleri için kullanıcı segmentasyonu</li>
+                            <li>Çeviri servislerinin dinamik konfigürasyonu</li>
+                        </ul>
+
+                        <h4 style="margin-top: 2rem; color: #3498db;">🔒 Veri İşleyici:</h4>
+                        <p><strong>Google LLC</strong> (Firebase Platform)</p>
+
+                        <div class="warning-card" style="margin-top: 2rem;">
+                            <h4>ℹ️ Önemli Not:</h4>
+                            <p>
+                                Firebase Remote Config, <strong>çevirilerinizi veya kişisel içeriklerinizi ASLA toplamaz</strong>.
+                                Sadece uygulama davranışını optimize etmek için teknik yapılandırma değerleri alır.
+                            </p>
+                        </div>
+
+                        <div class="warning-card" style="margin-top: 1rem;">
+                            <h4>📚 Detaylı Bilgi İçin:</h4>
+                            <ul>
+                                <li><strong>Firebase Gizlilik Politikası:</strong> <a href="https://firebase.google.com/support/privacy" target="_blank" style="color: #0066cc;">https://firebase.google.com/support/privacy</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="content-card" style="border: 3px solid #9b59b6; margin-top: 2rem;">
+                        <h3 data-icon="🛡️">Üçüncü Taraf Veri İşleme Garantileri</h3>
+                        <p>
+                            Screen Translate ve kullandığımız üçüncü taraf hizmetler arasında veri paylaşımı konusunda
+                            aşağıdaki garantileri veriyoruz:
+                        </p>
+
+                        <div class="feature-grid">
+                            <div class="feature-card">
+                                <div class="feature-icon">🚫</div>
+                                <div class="feature-title">Çeviri Verileriniz Paylaşılmaz</div>
+                                <div class="feature-desc">OCR ve çeviri içerikleri hiçbir üçüncü tarafa gönderilmez</div>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">🔒</div>
+                                <div class="feature-title">Hassas Bilgiler Korunur</div>
+                                <div class="feature-desc">Şifre, kredi kartı gibi bilgiler filtrelenir ve asla paylaşılmaz</div>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">⚖️</div>
+                                <div class="feature-title">GDPR/KVKK Uyumlu</div>
+                                <div class="feature-desc">Tüm veri işleme süreçleri yasal mevzuata uygundur</div>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">🔐</div>
+                                <div class="feature-title">Şifreli İletişim</div>
+                                <div class="feature-desc">Tüm üçüncü taraf iletişimler HTTPS/TLS ile şifrelenir</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="privacy-section" id="processing">
+                    <div class="section-header">
+                        <div class="section-icon">⚙️</div>
+                        <div class="section-title">
+                            <h2>Veri İşleme Yöntemleri</h2>
+                            <p>Verilerinizin nasıl işlendiği ve korunduğunun teknik detayları</p>
+                        </div>
+                    </div>
+
+                    <div class="content-card">
+                        <h3 data-icon="🔄">4 Çeviri Motoru ve Gizlilik</h3>
+                        <p>
+                            Screen Translate, kullanıcılarına <strong>4 farklı çeviri motoru</strong> sunar.
+                            Her motorun farklı gizlilik özellikleri vardır:
+                        </p>
+
+                        <h4 style="margin-top: 1.5rem; color: #4285f4;">🤖 Gemini AI (Google Yapay Zeka)</h4>
+                        <ul>
+                            <li><strong>Çalışma Şekli:</strong> Çevrilecek metin Google sunucularına gönderilir</li>
+                            <li><strong>Veri İşleyici:</strong> Google LLC (Gemini AI servisleri)</li>
+                            <li><strong>İnternet:</strong> Gereklidir</li>
+                            <li><strong>Gizlilik:</strong> Metinler çeviri için işlenir, Google gizlilik politikasına tabidir</li>
+                            <li><strong>Kalite:</strong> En yüksek çeviri kalitesi (bağlam anlama, deyimler)</li>
+                        </ul>
+
+                        <h4 style="margin-top: 1.5rem; color: #9b59b6;">🤖 DeepSeek AI</h4>
+                        <ul>
+                            <li><strong>Çalışma Şekli:</strong> Çevrilecek metin DeepSeek sunucularına gönderilir</li>
+                            <li><strong>Veri İşleyici:</strong> DeepSeek (alternatif AI servisi)</li>
+                            <li><strong>İnternet:</strong> Gereklidir</li>
+                            <li><strong>Gizlilik:</strong> Metinler çeviri için işlenir, DeepSeek gizlilik politikasına tabidir</li>
+                            <li><strong>Kalite:</strong> Yüksek AI çeviri kalitesi</li>
+                        </ul>
+
+                        <h4 style="margin-top: 1.5rem; color: #34a853;">☁️ Google Cloud Translation</h4>
+                        <ul>
+                            <li><strong>Çalışma Şekli:</strong> Çevrilecek metin Google Cloud'a gönderilir</li>
+                            <li><strong>Veri İşleyici:</strong> Google Cloud Platform</li>
+                            <li><strong>İnternet:</strong> Gereklidir</li>
+                            <li><strong>Gizlilik:</strong> Metinler çeviri için işlenir, Google Cloud gizlilik politikasına tabidir</li>
+                            <li><strong>Kalite:</strong> Yüksek çeviri kalitesi, hızlı</li>
+                        </ul>
+
+                        <h4 style="margin-top: 1.5rem; color: #ea4335;">📱 ML Kit (Çevrimdışı)</h4>
+                        <ul>
+                            <li><strong>Çalışma Şekli:</strong> %100 cihaz içi işleme, internet gerektirmez</li>
+                            <li><strong>Veri İşleyici:</strong> ML Kit: Yok (yerel), Gemini/Cloud Vision: Google LLC</li>
+                            <li><strong>İnternet:</strong> Gerektirmez (sadece model indirme için)</li>
+                            <li><strong>Gizlilik:</strong> Hiçbir veri cihazınızdan çıkmaz, maksimum gizlilik</li>
+                            <li><strong>Kalite:</strong> İyi çeviri kalitesi</li>
+                        </ul>
+
+                        <div class="warning-card" style="margin-top: 1.5rem; background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); border-color: #4caf50;">
+                            <h4 style="color: #2e7d32;">✅ Kullanıcı Kontrolü</h4>
+                            <p style="color: #2e7d32;">
+                                Uygulama ayarlarından <strong>hangi çeviri motorunu kullanacağınızı seçebilirsiniz</strong>:
+                            </p>
+                            <ul style="color: #2e7d32;">
+                                <li><strong>Varsayılan Mod:</strong> Otomatik yedekleme (Gemini → DeepSeek → Google Cloud → ML Kit)</li>
+                                <li><strong>Sadece Gemini AI:</strong> En yüksek kalite</li>
+                                <li><strong>Sadece DeepSeek:</strong> Alternatif AI çeviri</li>
+                                <li><strong>Sadece Google Cloud:</strong> Hızlı ve güvenilir</li>
+                                <li><strong>Sadece ML Kit:</strong> Maksimum gizlilik, çevrimdışı</li>
+                            </ul>
+                            <p style="color: #2e7d32; margin-top: 1rem;">
+                                💡 <strong>Gizlilik odaklıysanız:</strong> ML Kit motorunu seçerek verilerinizin hiçbir zaman
+                                cihazınızdan çıkmamasını sağlayabilirsiniz.
+                            </p>
+                        </div>
+
+                        <h4 style="margin-top: 2rem; color: #333;">🔒 OCR Seçenekleri</h4>
+                        <ul>
+                            <li><strong>ML Kit OCR:</strong> Tamamen offline, cihazınızda çalışır</li>
+                            <li><strong>Cloud Vision OCR:</strong> Bulut tabanlı, 50 dil desteği</li>
+                            <li><strong>Kullanıcı Kontrolü:</strong> Ayarlardan OCR motorunu seçebilirsiniz</li>
+                            <li><strong>Bellek Yönetimi:</strong> İşlem sonrası otomatik temizleme</li>
+                        </ul>
+                    </div>
+
+                    <div class="interactive-demo">
+                        <div class="demo-content">
+                            <h3 class="demo-title">🔐 Hassas Veri Koruma Sistemi</h3>
+                            <p class="demo-subtitle">
+                                Uygulama, hassas bilgileri otomatik olarak tespit eder ve korur
+                            </p>
+
+                            <div class="demo-features">
+                                <div class="demo-feature">
+                                    <h4>💳 Finansal Bilgiler</h4>
+                                    <p>Kredi kartı numaraları, IBAN ve banka bilgileri otomatik maskelenir</p>
+                                </div>
+                                <div class="demo-feature">
+                                    <h4>📞 İletişim Bilgileri</h4>
+                                    <p>Telefon numaraları ve e-posta adresleri güvenlik filtrelerinden geçer</p>
+                                </div>
+                                <div class="demo-feature">
+                                    <h4>🔑 Kimlik Bilgileri</h4>
+                                    <p>TC kimlik numarası, pasaport ve kimlik bilgileri korunur</p>
+                                </div>
+                                <div class="demo-feature">
+                                    <h4>📱 Sosyal Medya</h4>
+                                    <p>Sosyal medya hesap bilgileri ve şifreler filtrelenir</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="privacy-section" id="permissions">
+                    <div class="section-header">
+                        <div class="section-icon">🔑</div>
+                        <div class="section-title">
+                            <h2>İzinler ve Erişim</h2>
+                            <p>Uygulamanın kullandığı izinler ve bunların kullanım amaçları</p>
+                        </div>
+                    </div>
+
+                    <div class="content-card">
+                        <h3 data-icon="⚡">Android İzinleri</h3>
+                        <p>Screen Translate aşağıdaki Android izinlerini kullanır ve her birinin spesifik bir amacı
+                            vardır:</p>
+
+                        <div class="feature-grid">
+                            <div class="feature-card">
+                                <div class="feature-icon">🖥️</div>
+                                <div class="feature-title">SYSTEM_ALERT_WINDOW</div>
+                                <div class="feature-desc">Overlay çeviri arayüzünü göstermek için gerekli. Veri toplama
+                                    yok.</div>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">⚙️</div>
+                                <div class="feature-title">FOREGROUND_SERVICE</div>
+                                <div class="feature-desc">Arka plan çeviri hizmeti için. Sistem bildirimi gösterir.
+                                </div>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">📹</div>
+                                <div class="feature-title">MEDIA_PROJECTION</div>
+                                <div class="feature-desc">Ekran yakalama için. Görüntüler hiç saklanmaz.</div>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">🔔</div>
+                                <div class="feature-title">POST_NOTIFICATIONS</div>
+                                <div class="feature-desc">Hizmet durumu bildirimleri. Reklam yok.</div>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">🌐</div>
+                                <div class="feature-title">INTERNET</div>
+                                <div class="feature-desc">Çeviri API erişimi (isteğe bağlı). Metinler saklanmaz.</div>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">🔋</div>
+                                <div class="feature-title">WAKE_LOCK</div>
+                                <div class="feature-desc">Android 15 uyumluluğu. Pil optimizasyonu.</div>
+                            </div>
+                        </div>
+
+                        <div class="warning-card">
+                            <h4>⚠️ İzin Güvenliği Garantisi</h4>
+                            <p>
+                                <strong>Ekran erişimi yalnızca OCR için kullanılır.</strong> Hiçbir ekran görüntüsü
+                                kayıt edilmez, paylaşılmaz veya saklanmaz. İşlem sonrası tüm geçici
+                                veriler anında silinir. Bu süreç tamamen şeffaf ve denetlenebilirdir.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="privacy-section" id="third-party">
+                    <div class="section-header">
+                        <div class="section-icon">🤝</div>
+                        <div class="section-title">
+                            <h2>Üçüncü Taraf Hizmetler</h2>
+                            <p>Kullanılan teknolojiler ve veri paylaşım politikaları</p>
+                        </div>
+                    </div>
+
+                    <div class="content-card">
+                        <h3 data-icon="🔧">Teknoloji Ortakları</h3>
+                        <p>Screen Translate, güvenilir teknoloji şirketlerinin hizmetlerini kullanır:</p>
+
+                        <div class="feature-grid">
+                            <div class="feature-card">
+                                <div class="feature-icon">🎯</div>
+                                <div class="feature-title">Google ML Kit OCR</div>
+                                <div class="feature-desc">
+                                    <strong>100% Offline OCR</strong><br>
+                                    Metin tanıma tamamen cihazda. Veri gönderimi yok.
+                                </div>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">🤖</div>
+                                <div class="feature-title">Google Gemini AI</div>
+                                <div class="feature-desc">
+                                    <strong>Premium AI Çeviri</strong><br>
+                                    Çeviri metni Google AI'ye gönderilir. En yüksek kalite.
+                                </div>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">☁️</div>
+                                <div class="feature-title">Google Cloud Translation</div>
+                                <div class="feature-desc">
+                                    <strong>Bulut Çeviri</strong><br>
+                                    Çeviri metni Google Cloud'a gönderilir. Hızlı ve güvenilir.
+                                </div>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">📱</div>
+                                <div class="feature-title">ML Kit Translation (Offline)</div>
+                                <div class="feature-desc">
+                                    <strong>%100 Cihaz İçi Çeviri</strong><br>
+                                    Çeviri tamamen cihazda. İnternet gerektirmez.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="data-protection-visual">
+                            <div class="data-protection-content">
+                                <h4>🛡️ Üçüncü Taraf Güvenlik Protokolü</h4>
+                                <ul>
+                                    <li>• Kişisel bilgiler hiçbir üçüncü tarafla paylaşılmaz</li>
+                                    <li>• API çağrıları HTTPS ile şifrelenir</li>
+                                    <li>• Geçici işleme verileri anında silinir</li>
+                                    <li>• Kullanıcı izni olmadan veri aktarımı yapılmaz</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="privacy-section" id="user-rights">
+                    <div class="section-header">
+                        <div class="section-icon">👤</div>
+                        <div class="section-title">
+                            <h2>Kullanıcı Hakları</h2>
+                            <p>KVKK ve GDPR kapsamında sahip olduğunuz haklar</p>
+                        </div>
+                    </div>
+
+                    <div class="content-card">
+                        <h3 data-icon="⚖️">Yasal Haklarınız</h3>
+                        <p>KVKK ve uluslararası gizlilik standartları kapsamında sahip olduğunuz haklar:</p>
+
+                        <div class="feature-grid">
+                            <div class="feature-card">
+                                <div class="feature-icon">📋</div>
+                                <div class="feature-title">Bilgilendirme Hakkı</div>
+                                <div class="feature-desc">Hangi verilerinizin nasıl kullanıldığını öğrenme hakkınız
+                                    vardır.</div>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">🗑️</div>
+                                <div class="feature-title">Silme Hakkı</div>
+                                <div class="feature-desc">Uygulamayı silerek tüm yerel verileri tamamen
+                                    kaldırabilirsiniz.</div>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">⚙️</div>
+                                <div class="feature-title">Düzeltme Hakkı</div>
+                                <div class="feature-desc">Uygulama ayarlarını istediğiniz zaman değiştirebilirsiniz.
+                                </div>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">🚫</div>
+                                <div class="feature-title">İtiraz Hakkı</div>
+                                <div class="feature-desc">Veri işleme süreçlerine itiraz etme ve şikayette bulunma
+                                    hakkınız vardır.</div>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">📤</div>
+                                <div class="feature-title">Taşınabilirlik Hakkı</div>
+                                <div class="feature-desc">Ayarlarınızı dışa aktarma ve başka cihazda kullanma hakkınız
+                                    vardır.</div>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">🔒</div>
+                                <div class="feature-title">Kısıtlama Hakkı</div>
+                                <div class="feature-desc">Belirli özellikleri devre dışı bırakarak veri işlemeyi
+                                    sınırlayabilirsiniz.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="privacy-section" id="security">
+                    <div class="section-header">
+                        <div class="section-icon">🛡️</div>
+                        <div class="section-title">
+                            <h2>Veri Güvenliği</h2>
+                            <p>Verilerinizi korumak için aldığımız teknik ve organizasyonel önlemler</p>
+                        </div>
+                    </div>
+
+                    <div class="content-card">
+                        <h3 data-icon="🔐">Güvenlik Mimarisi</h3>
+
+                        <div class="interactive-demo">
+                            <div class="demo-content">
+                                <h4 class="demo-title">🏰 Çok Katmanlı Güvenlik</h4>
+                                <p class="demo-subtitle">Screen Translate'in güvenlik yaklaşımı</p>
+
+                                <div class="demo-features">
+                                    <div class="demo-feature">
+                                        <h4>🔐 Şifreleme</h4>
+                                        <p>
+                                            <strong>AES-256 Şifreleme:</strong> Tüm yerel veriler<br>
+                                            <strong>TLS 1.3:</strong> API iletişimi<br>
+                                            <strong>Hash Algoritmaları:</strong> Veri bütünlüğü
+                                        </p>
+                                    </div>
+                                    <div class="demo-feature">
+                                        <h4>🧠 Bellek Koruması</h4>
+                                        <p>
+                                            <strong>Otomatik Temizleme:</strong> İşlem sonrası<br>
+                                            <strong>Secure Memory:</strong> Hassas veriler<br>
+                                            <strong>Garbage Collection:</strong> Optimize edilmiş
+                                        </p>
+                                    </div>
+                                    <div class="demo-feature">
+                                        <h4>🔍 Güvenlik Denetimi</h4>
+                                        <p>
+                                            <strong>Kod İncelemesi:</strong> Düzenli denetim<br>
+                                            <strong>Penetrasyon Testi:</strong> Güvenlik açığı<br>
+                                            <strong>Güncellemeler:</strong> Hızlı yamalar
+                                        </p>
+                                    </div>
+                                    <div class="demo-feature">
+                                        <h4>📊 İzleme Sistemi</h4>
+                                        <p>
+                                            <strong>Anomali Tespiti:</strong> Anormal davranış<br>
+                                            <strong>Gerçek Zamanlı:</strong> Anlık koruma<br>
+                                            <strong>Otomatik Yanıt:</strong> Tehdit engelleme
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="privacy-section" id="children">
+                    <div class="section-header">
+                        <div class="section-icon">👶</div>
+                        <div class="section-title">
+                            <h2>Çocukların Gizliliği</h2>
+                            <p>13 yaş altı kullanıcılar için özel koruma önlemleri</p>
+                        </div>
+                    </div>
+
+                    <div class="content-card">
+                        <h3 data-icon="👨‍👩‍👧‍👦">Çocuk Koruma Protokolü</h3>
+                        <p>Screen Translate, 13 yaş altı çocukların dijital gizliliğini korumak için özel önlemler alır:
+                        </p>
+
+                        <div class="feature-grid">
+                            <div class="feature-card">
+                                <div class="feature-icon">✋</div>
+                                <div class="feature-title">Ebeveyn İzni</div>
+                                <div class="feature-desc">13 yaş altı kullanım için ebeveyn onayı gereklidir</div>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">🚫</div>
+                                <div class="feature-title">Veri Toplama Yasağı</div>
+                                <div class="feature-desc">Çocuklara ait hiçbir kişisel veri toplanmaz</div>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">🎛️</div>
+                                <div class="feature-title">Ebeveyn Kontrolü</div>
+                                <div class="feature-desc">Gelişmiş ebeveyn kontrolü ve izleme özellikleri</div>
+                            </div>
+                        </div>
+
+                        <div class="warning-card">
+                            <h4>👨‍👩‍👧‍👦 Ebeveynlere Özel Uyarı</h4>
+                            <p>
+                                Çocuğunuz bu uygulamayı kullanıyorsa, hassas bilgi koruma özelliklerinin
+                                etkin olduğundan emin olun. Düzenli olarak uygulama ayarlarını kontrol edin
+                                ve çocuğunuza dijital gizlilik konusunda eğitim verin.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="interactive-demo">
+                    <div class="demo-content">
+                        <h3 class="demo-title">📱 Screen Translate - Gizlilik Özeti</h3>
+                        <p class="demo-subtitle">Tüm gizlilik garantilerimiz bir arada</p>
+
+                        <div class="demo-features">
+                            <div class="demo-feature">
+                                <h4>✅ Esnek İşleme Seçenekleri</h4>
+                                <p>ML Kit ile yerel işleme veya Gemini/Google Cloud ile bulut işleme seçimi</p>
+                            </div>
+                            <div class="demo-feature">
+                                <h4>✅ Çeviri Metinleri Saklanmaz</h4>
+                                <p>Çevrilen metinler hiçbir zaman kayıt altına alınmaz (AdMob reklamlar için Reklam ID toplar)</p>
+                            </div>
+                            <div class="demo-feature">
+                                <h4>✅ Anında Silme</h4>
+                                <p>İşlem sonrası tüm geçici veriler otomatik silinir</p>
+                            </div>
+                            <div class="demo-feature">
+                                <h4>✅ Hassas Veri Koruması</h4>
+                                <p>Kredi kartı, IBAN, telefon gibi bilgiler otomatik korunur ve filtrelenir</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-section">
+            <div class="container">
+                <div class="contact-content">
+                    <h2 class="contact-title">📧 Gizlilik Destek Merkezi</h2>
+                    <p class="contact-subtitle">
+                        Gizlilik haklarınız ve sorularınız için 7/24 destek
+                    </p>
+
+                    <div class="contact-cards">
+                        <div class="contact-card">
+                            <h4>🏢 Veri Sorumlusu</h4>
+                            <p><strong>Şirket:</strong> AURSAL</p>
+                            <p><strong>Uygulama:</strong> Screen Translate</p>
+                            <p><strong>Platform:</strong> Android</p>
+                            <p><strong>Paket ID:</strong> com.esarikaya.screentranslate</p>
+                        </div>
+
+                        <div class="contact-card">
+                            <h4>⚖️ Yasal Uyumluluk</h4>
+                            <p><strong>KVKK:</strong> ✅ Tam Uyumlu</p>
+                            <p><strong>GDPR:</strong> ✅ Tam Uyumlu</p>
+                            <p><strong>COPPA:</strong> ✅ Çocuk Korumalı</p>
+                            <p><strong>CCPA:</strong> ✅ California Uyumlu</p>
+                        </div>
+
+                        <div class="contact-card">
+                            <h4>📞 İletişim Kanalları</h4>
+                            <p><strong>Gizlilik Sorularınız için:</strong></p>
+                            <p>• Google Play Store üzerinden</p>
+                            <p>• Uygulama içi geri bildirim</p>
+                            <p>• Developer Console</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>🛡️ Gizlilik Commitment</h4>
+                    <p>
+                        AURSAL olarak, kullanıcı gizliliğini korumayı taahhüt ediyoruz.
+                        Screen Translate, çeviri metinlerinizi saklamaz. Sadece AdMob reklamlar için Reklam ID toplanır.
+                    </p>
+                </div>
+
+                <div class="footer-section">
+                    <h4>🔒 Güvenlik Standartları</h4>
+                    <ul>
+                        <li>• AES-256 şifreleme</li>
+                        <li>• TLS 1.3 iletişim</li>
+                        <li>• ML Kit ile yerel, Gemini/Google ile bulut</li>
+                        <li>• Otomatik bellek temizleme</li>
+                        <li>• Hassas veri filtreleme</li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>⚖️ Yasal Uyumluluk</h4>
+                    <ul>
+                        <li>KVKK (Türkiye)</li>
+                        <li>GDPR (Avrupa Birliği)</li>
+                        <li>COPPA (ABD - Çocuk Gizliliği)</li>
+                        <li>CCPA (California)</li>
+                        <li>Privacy Act (Avustralya)</li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>📱 Uygulama Bilgileri</h4>
+                    <ul>
+                        <li>Sürüm: 3.0.0 (Build 50)</li>
+                        <li>Son Güncelleme: Mart 2026</li>
+                        <li>Compile SDK: API 36</li>
+                        <li>Hedef SDK: Android 16 (API 36)</li>
+                        <li>Minimum SDK: Android 6.0 (API 23)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <a href="index.html">🏠 Ana Sayfa</a>
+                <a href="hakkimizda.html">ℹ️ Hakkımızda</a>
+                <a href="kullanici-sozlesmesi.html">📋 Kullanıcı Sözleşmesi</a>
+                <a href="https://play.google.com/store/apps/details?id=com.esarikaya.screentranslate" target="_blank">📱
+                    Google Play</a>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 <strong>AURSAL</strong> • Screen Translate • Tüm hakları saklıdır • Gizliliğiniz bizim
+                    önceliğimizdir</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll progress indicator
+        window.addEventListener('scroll', function () {
+            const scrollProgress = document.getElementById('scrollProgress');
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.body.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            scrollProgress.style.width = scrollPercent + '%';
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.content-card, .feature-card, .stat-item, .demo-feature').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(el);
+        });
+
+
+    </script>
+
+    <style>
+
+    </style>
+</body>
+
+</html>

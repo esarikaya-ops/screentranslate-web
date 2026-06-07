@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nasıl Kullanılır - Screen Translate</title>
+    <meta name="description" content="Screen Translate uygulamasını nasıl kullanacağınızı öğrenin. Adım adım kurulum ve kullanım rehberi, video eğitimi.">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #764ba2;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            width: 35px;
+            height: 35px;
+            border-radius: 8px;
+            object-fit: cover;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #ff6b6b;
+            opacity: 1;
+        }
+
+        .nav-btn {
+            background: #ff6b6b;
+            color: white !important;
+            padding: 0.5rem 1.2rem;
+            border-radius: 25px;
+            transition: all 0.3s ease !important;
+        }
+
+        .nav-btn:hover {
+            background: #ff5252;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+        }
+
+        .content {
+            background: white;
+            padding: 120px 0 80px;
+            min-height: 100vh;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 177.78%;
+            max-width: 360px;
+            margin: 2rem auto;
+            height: 0;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .steps-section {
+            margin-top: 4rem;
+        }
+
+        .step-group {
+            margin-bottom: 4rem;
+        }
+
+        .group-title {
+            font-size: 1.8rem;
+            color: #667eea;
+            margin-bottom: 2rem;
+            border-left: 4px solid #ff6b6b;
+            padding-left: 1rem;
+        }
+
+        .step-item {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #e0e0e0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .step-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .step-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 700;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            border-radius: 50%;
+            margin-right: 1rem;
+        }
+
+        .step-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .step-description {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .step-image {
+            max-width: 300px;
+            width: 100%;
+            border-radius: 8px;
+            margin: 1rem 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            display: block;
+        }
+
+        .image-placeholder {
+            max-width: 300px;
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #e0e0e0 0%, #f5f5f5 100%);
+            border-radius: 8px;
+            margin: 1rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 0.9rem;
+            border: 2px dashed #ccc;
+        }
+
+        .highlight {
+            color: #ff6b6b;
+            font-weight: 600;
+        }
+
+        .tip-box {
+            background: #fff8e1;
+            border-left: 4px solid #ffc107;
+            padding: 1rem 1.5rem;
+            margin: 2rem 0;
+            border-radius: 5px;
+        }
+
+        .tip-box strong {
+            color: #f57c00;
+        }
+
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .group-title {
+                font-size: 1.5rem;
+            }
+
+            .step-title {
+                font-size: 1.1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="https://images.squarespace-cdn.com/content/67eaf5802fa4430becab8e5e/ea424aa9-b006-4062-b0ff-99ad422317e1/screen+translate+ikon.jpg?content-type=image%2Fjpeg" alt="Screen Translate Logo" class="logo-img">
+                <span class="logo-text">Screen Translate</span>
+            </a>
+            <nav class="nav-links">
+                <a href="index.html#modes">Modlar</a>
+                <a href="index.html#features">Özellikler</a>
+                <a href="https://www.screentranslate.com/hakkmzda">Hakkımızda</a>
+                <a href="https://www.screentranslate.com/yardm-ve-sss">Yardım & SSS</a>
+                <a href="https://www.screentranslate.com/gizlilik-politikasi" class="nav-link-sub">Gizlilik</a>
+                <a href="https://www.screentranslate.com/kullanici-sozlesmesi" class="nav-link-sub">Sözleşme</a>
+                <a href="https://www.screentranslate.com/nasil-kullanilir" class="nav-link-sub">Nasıl Kullanılır</a>
+                <a href="index.html#download" class="nav-btn">İndir</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="content">
+        <div class="container">
+            <h1 class="section-title">📖 Nasıl Kullanılır</h1>
+
+            <!-- Video Tutorial -->
+            <div class="video-container">
+                <iframe
+                    src="https://www.youtube.com/embed/Cs7JPNrXpKY"
+                    allowfullscreen
+                    title="Screen Translate Nasıl Kullanılır">
+                </iframe>
+            </div>
+
+            <!-- Step-by-step Guide -->
+            <div class="steps-section">
+
+                <!-- Group A: Kurulum & İzinler -->
+                <div class="step-group">
+                    <h2 class="group-title">🔧 Kurulum & İzinler</h2>
+
+                    <div class="step-item">
+                        <h3 class="step-title">
+                            <span class="step-number">1</span>
+                            Reklam ve Veri Onayı
+                        </h3>
+                        <p class="step-description">
+                            Uygulama ilk açılışta Google AdMob reklam ve veri toplama izni ister.
+                            Tercihinize göre <span class="highlight">"Kabul Et"</span> veya
+                            <span class="highlight">"Özelleştir"</span> seçeneğini kullanabilirsiniz.
+                        </p>
+                        <div class="image-placeholder">📱 Görsel: Reklam onay ekranı</div>
+                    </div>
+
+                    <div class="step-item">
+                        <h3 class="step-title">
+                            <span class="step-number">2</span>
+                            Hizmet Şartlarını Kabul Edin
+                        </h3>
+                        <p class="step-description">
+                            Gizlilik Politikası ve Kullanım Şartlarını okuyup kabul edin.
+                            <span class="highlight">"Kabul Et"</span> butonuna basarak devam edebilirsiniz.
+                        </p>
+                        <div class="image-placeholder">📄 Görsel: Hizmet şartları popup</div>
+                    </div>
+
+                    <div class="step-item">
+                        <h3 class="step-title">
+                            <span class="step-number">3</span>
+                            Sistem İzinleri
+                        </h3>
+                        <p class="step-description">
+                            <span class="highlight">"Go to set"</span> butonuna basarak Android sistem ayarlarına gidin.
+                            Burada Screen Translate için gerekli izinleri aktif edin:
+                        </p>
+                        <ul style="margin-left: 2rem; margin-top: 0.5rem;">
+                            <li><strong>Üstte Görüntüleme İzni:</strong> Overlay arayüzü için gerekli</li>
+                            <li><strong>Ekran Yakalama İzni:</strong> OCR için ekran içeriğini okur</li>
+                        </ul>
+                        <div class="image-placeholder">⚙️ Görsel: Sistem izinleri ekranı</div>
+                    </div>
+                </div>
+
+                <!-- Group B: İlk Kullanım -->
+                <div class="step-group">
+                    <h2 class="group-title">🚀 İlk Kullanım</h2>
+
+                    <div class="step-item">
+                        <h3 class="step-title">
+                            <span class="step-number">4</span>
+                            Kontrol Panelini Tanıyın
+                        </h3>
+                        <p class="step-description">
+                            Uygulama başlatıldığında ekranınızda <span class="highlight">kayan bir kontrol paneli</span> görünür.
+                            Bu panel ile çeviri ayarlarını yapabilir, servisi başlatıp durdurabilirsiniz.
+                        </p>
+                        <div class="image-placeholder">🎛️ Görsel: Kontrol paneli (küçük hali)</div>
+                    </div>
+
+                    <div class="step-item">
+                        <h3 class="step-title">
+                            <span class="step-number">5</span>
+                            Paneli Genişletin (Çift Dokunma)
+                        </h3>
+                        <p class="step-description">
+                            Kontrol paneline <span class="highlight">çift dokunarak</span> genişletin.
+                            Geniş görünümde tüm ayarlara erişebilirsiniz: dil seçimi, opacity, OCR motoru.
+                        </p>
+                        <div class="image-placeholder">📐 Görsel: Kontrol paneli (geniş hali)</div>
+                    </div>
+
+                    <div class="step-item">
+                        <h3 class="step-title">
+                            <span class="step-number">6</span>
+                            Kaynak ve Hedef Dil Seçimi
+                        </h3>
+                        <p class="step-description">
+                            <span class="highlight">Kaynak dil</span> (çevrilecek dil) ve
+                            <span class="highlight">hedef dil</span> (çevireceğiniz dil) seçin.
+                            50+ dil desteği mevcuttur. Otomatik dil algılama için "Auto" seçebilirsiniz.
+                        </p>
+                        <div class="image-placeholder">🌐 Görsel: Dil seçim menüsü</div>
+                    </div>
+
+                    <div class="step-item">
+                        <h3 class="step-title">
+                            <span class="step-number">7</span>
+                            Opacity ve OCR Motoru Ayarları
+                        </h3>
+                        <p class="step-description">
+                            <strong>Opacity:</strong> Çeviri overlay'inin şeffaflık oranını ayarlayın (10%-100%).<br>
+                            <strong>OCR Motoru:</strong> ML Kit (offline) veya Cloud Vision (50 dil) seçin.
+                        </p>
+                        <div class="image-placeholder">🔧 Görsel: Opacity ve OCR ayarları</div>
+                    </div>
+
+                    <div class="step-item">
+                        <h3 class="step-title">
+                            <span class="step-number">8</span>
+                            Çeviriyi Başlatın
+                        </h3>
+                        <p class="step-description">
+                            <span class="highlight">"START"</span> butonuna basarak çeviri servisini başlatın.
+                            Artık ekranda gördüğünüz her metin otomatik olarak çevrilecektir!
+                        </p>
+                        <div class="image-placeholder">▶️ Görsel: START butonu ve aktif çeviri</div>
+                    </div>
+                </div>
+
+                <!-- Group C: İpuçları -->
+                <div class="step-group">
+                    <h2 class="group-title">💡 İpuçları ve Püf Noktaları</h2>
+
+                    <div class="step-item">
+                        <h3 class="step-title">
+                            <span class="step-number">9</span>
+                            Arka Planda Kullanım
+                        </h3>
+                        <p class="step-description">
+                            Screen Translate arka planda çalışır. Diğer uygulamaları kullanırken de çeviri yapmaya devam eder.
+                            Ana sayfaya geri dönmek için <span class="highlight">bildirim çubuğuna</span> dokunun.
+                        </p>
+                        <div class="image-placeholder">🔔 Görsel: Bildirim çubuğu (aktif servis)</div>
+                    </div>
+
+                    <div class="step-item">
+                        <h3 class="step-title">
+                            <span class="step-number">10</span>
+                            Çeviri Konumunu Ayarlama
+                        </h3>
+                        <p class="step-description">
+                            Kontrol panelini ekranda istediğiniz yere <span class="highlight">sürükleyebilirsiniz</span>.
+                            Çeviri overlay'i de otomatik olarak metinlerin üzerine yerleşir.
+                        </p>
+                        <div class="image-placeholder">↔️ Görsel: Panel sürükleme</div>
+                    </div>
+
+                    <div class="step-item">
+                        <h3 class="step-title">
+                            <span class="step-number">11</span>
+                            Mod Seçimi
+                        </h3>
+                        <p class="step-description">
+                            Ayarlardan özel modları aktif edebilirsiniz:
+                        </p>
+                        <ul style="margin-left: 2rem; margin-top: 0.5rem;">
+                            <li><strong>Oyun Modu:</strong> Düşük gecikme, optimize işleme</li>
+                            <li><strong>Sosyal Medya Modu:</strong> Hashtag ve mention koruması</li>
+                            <li><strong>Sohbet Modu:</strong> Mesajlaşma uygulamaları için</li>
+                        </ul>
+                        <div class="image-placeholder">🎮 Görsel: Mod seçim menüsü</div>
+                    </div>
+
+                    <div class="step-item">
+                        <h3 class="step-title">
+                            <span class="step-number">12</span>
+                            Uygulamayı Kapatma
+                        </h3>
+                        <p class="step-description">
+                            Çeviri servisini durdurmak için <span class="highlight">"STOP"</span> butonuna basın.
+                            Uygulamayı tamamen kapatmak için Ana Sayfa → Ayarlar → Çıkış seçeneğini kullanın.
+                        </p>
+                        <div class="image-placeholder">⏹️ Görsel: STOP butonu</div>
+                    </div>
+                </div>
+
+                <!-- Tip Box -->
+                <div class="tip-box">
+                    <strong>💡 Pro İpucu:</strong> En yüksek gizlilik için ML Kit OCR + ML Kit Offline çeviri kombinasyonunu kullanın.
+                    Bu mod tamamen çevrimdışı çalışır ve hiçbir veri cihazınızdan çıkmaz. Offline dil paketlerini
+                    Ayarlar → Çevrimdışı Diller bölümünden indirebilirsiniz.
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Smooth scrolling for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

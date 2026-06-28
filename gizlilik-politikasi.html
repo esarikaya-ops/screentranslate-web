@@ -771,8 +771,8 @@
             <nav class="nav-links">
                 <a href="index.html#modes">Modlar</a>
                 <a href="index.html#features">Özellikler</a>
-                <a href="https://www.screentranslate.com/hakkimizda">Hakkımızda</a>
-                <a href="https://www.screentranslate.com/yardim-sss">Yardım & SSS</a>
+                <a href="https://www.screentranslate.com/hakkmzda">Hakkımızda</a>
+                <a href="https://www.screentranslate.com/yardm-ve-sss">Yardım & SSS</a>
                 <a href="https://www.screentranslate.com/gizlilik-politikasi" class="nav-link-sub">Gizlilik</a>
                 <a href="https://www.screentranslate.com/kullanici-sozlesmesi" class="nav-link-sub">Sözleşme</a>
                 <a href="index.html#download" class="nav-btn">İndir</a>
@@ -790,7 +790,7 @@
                         ML Kit ile verileriniz cihazınızda kalır, Gemini/Cloud ile şeffaf bulut işleme.
                     </p>
                     <div class="update-badge">
-                        📅 Son Güncelleme: 24 Mayıs 2026 (v4.0.0 - Major Release)
+                        📅 Son Güncelleme: 26 Haziran 2026 (v4.1.0 - Premium Motors + Travel Mode)
                     </div>
 
                     <div class="privacy-stats">
@@ -1118,13 +1118,15 @@
                     <div class="warning-card" style="margin-top: 2rem;">
                         <h4>⚠️ Önemli Bilgilendirme: Veri İşleme ve Gizlilik</h4>
                         <p>
-                            <strong>OCR (metin tanıma): ML Kit OCR cihazınızda, Cloud Vision OCR bulutta yapılır.</strong>
-                            Çeviri işlemleri için 4 farklı motor sunulmaktadır:
+                            <strong>OCR (metin tanıma): ML Kit OCR cihazınızda, Cloud Vision OCR ve Azure Vision OCR bulutta yapılır.</strong>
+                            Çeviri işlemleri için 6 farklı motor sunulmaktadır:
                         </p>
                         <ul style="margin: 1rem 0; padding-left: 1.5rem;">
-                            <li><strong>Gemini AI:</strong> Çevrilecek metin Google sunucularına gönderilir (en yüksek kalite)</li>
-                            <li><strong>DeepSeek:</strong> Çevrilecek metin DeepSeek sunucularına gönderilir (alternatif AI çeviri)</li>
-                            <li><strong>Google Cloud Translation:</strong> Çevrilecek metin Google Cloud'a gönderilir (hızlı ve güvenilir)</li>
+                            <li><strong>Gemini AI:</strong> Çevrilecek metin Google sunucularına gönderilir</li>
+                            <li><strong>DeepL:</strong> Çevrilecek metin DeepL sunucularına gönderilir (Pro)</li>
+                            <li><strong>Claude AI:</strong> Çevrilecek metin Anthropic sunucularına gönderilir (Pro)</li>
+                            <li><strong>ChatGPT:</strong> Çevrilecek metin OpenAI sunucularına gönderilir (Pro)</li>
+                            <li><strong>Azure Translate:</strong> Çevrilecek metin Microsoft Azure'a gönderilir (Pro)</li>
                             <li><strong>ML Kit (Offline):</strong> Çeviri tamamen cihazınızda yapılır, hiçbir veri gönderilmez (maksimum gizlilik)</li>
                         </ul>
                         <p>
@@ -1158,7 +1160,7 @@
                         </li>
                         <li>
                             <strong>Anonim Cihaz Kimliği (SHA-256 Hash):</strong> Ücretsiz deneme hakkı
-                            (5 çeviri) takibi için Android ID + paket adı kombinasyonundan üretilen
+                            (10 çeviri) takibi için Android ID + paket adı kombinasyonundan üretilen
                             tek yönlü kriptografik hash. Bu değer <em>geri çevrilemez</em> ve sizi
                             kişisel olarak tanımlayamaz.
                         </li>
@@ -1387,44 +1389,56 @@
                     <div class="content-card">
                         <h3 data-icon="🔄">4 Çeviri Motoru ve Gizlilik</h3>
                         <p>
-                            Screen Translate, kullanıcılarına <strong>4 farklı çeviri motoru</strong> sunar.
+                            Screen Translate, kullanıcılarına <strong>6 farklı çeviri motoru</strong> sunar.
                             Her motorun farklı gizlilik özellikleri vardır:
                         </p>
 
-                        <h4 style="margin-top: 1.5rem; color: #4285f4;">🤖 Gemini AI (Google Yapay Zeka)</h4>
+                        <h4 style="margin-top: 1.5rem; color: #4285f4;">🤖 Gemini AI (Google)</h4>
                         <ul>
                             <li><strong>Çalışma Şekli:</strong> Çevrilecek metin Google sunucularına gönderilir</li>
-                            <li><strong>Veri İşleyici:</strong> Google LLC (Gemini AI servisleri)</li>
+                            <li><strong>Veri İşleyici:</strong> Google LLC</li>
                             <li><strong>İnternet:</strong> Gereklidir</li>
-                            <li><strong>Gizlilik:</strong> Metinler çeviri için işlenir, Google gizlilik politikasına tabidir</li>
-                            <li><strong>Kalite:</strong> En yüksek çeviri kalitesi (bağlam anlama, deyimler)</li>
+                            <li><strong>Gizlilik:</strong> Google gizlilik politikasına tabidir</li>
                         </ul>
 
-                        <h4 style="margin-top: 1.5rem; color: #9b59b6;">🤖 DeepSeek AI</h4>
+                        <h4 style="margin-top: 1.5rem; color: #0f4a8a;">🔵 DeepL (Pro)</h4>
                         <ul>
-                            <li><strong>Çalışma Şekli:</strong> Çevrilecek metin DeepSeek sunucularına gönderilir</li>
-                            <li><strong>Veri İşleyici:</strong> DeepSeek (alternatif AI servisi)</li>
+                            <li><strong>Çalışma Şekli:</strong> Çevrilecek metin DeepL sunucularına gönderilir</li>
+                            <li><strong>Veri İşleyici:</strong> DeepL SE</li>
                             <li><strong>İnternet:</strong> Gereklidir</li>
-                            <li><strong>Gizlilik:</strong> Metinler çeviri için işlenir, DeepSeek gizlilik politikasına tabidir</li>
-                            <li><strong>Kalite:</strong> Yüksek AI çeviri kalitesi</li>
+                            <li><strong>Gizlilik:</strong> DeepL gizlilik politikasına tabidir</li>
                         </ul>
 
-                        <h4 style="margin-top: 1.5rem; color: #34a853;">☁️ Google Cloud Translation</h4>
+                        <h4 style="margin-top: 1.5rem; color: #cc6600;">🤖 Claude AI — Anthropic (Pro)</h4>
                         <ul>
-                            <li><strong>Çalışma Şekli:</strong> Çevrilecek metin Google Cloud'a gönderilir</li>
-                            <li><strong>Veri İşleyici:</strong> Google Cloud Platform</li>
+                            <li><strong>Çalışma Şekli:</strong> Çevrilecek metin Anthropic sunucularına gönderilir</li>
+                            <li><strong>Veri İşleyici:</strong> Anthropic PBC</li>
                             <li><strong>İnternet:</strong> Gereklidir</li>
-                            <li><strong>Gizlilik:</strong> Metinler çeviri için işlenir, Google Cloud gizlilik politikasına tabidir</li>
-                            <li><strong>Kalite:</strong> Yüksek çeviri kalitesi, hızlı</li>
+                            <li><strong>Gizlilik:</strong> Anthropic gizlilik politikasına tabidir</li>
+                        </ul>
+
+                        <h4 style="margin-top: 1.5rem; color: #10a37f;">🤖 ChatGPT — OpenAI (Pro)</h4>
+                        <ul>
+                            <li><strong>Çalışma Şekli:</strong> Çevrilecek metin OpenAI sunucularına gönderilir</li>
+                            <li><strong>Veri İşleyici:</strong> OpenAI LLC</li>
+                            <li><strong>İnternet:</strong> Gereklidir</li>
+                            <li><strong>Gizlilik:</strong> OpenAI gizlilik politikasına tabidir</li>
+                        </ul>
+
+                        <h4 style="margin-top: 1.5rem; color: #0078d4;">☁️ Azure Translate — Microsoft (Pro)</h4>
+                        <ul>
+                            <li><strong>Çalışma Şekli:</strong> Çevrilecek metin Microsoft Azure sunucularına gönderilir</li>
+                            <li><strong>Veri İşleyici:</strong> Microsoft Corporation</li>
+                            <li><strong>İnternet:</strong> Gereklidir</li>
+                            <li><strong>Gizlilik:</strong> Microsoft gizlilik politikasına tabidir</li>
                         </ul>
 
                         <h4 style="margin-top: 1.5rem; color: #ea4335;">📱 ML Kit (Çevrimdışı)</h4>
                         <ul>
                             <li><strong>Çalışma Şekli:</strong> %100 cihaz içi işleme, internet gerektirmez</li>
-                            <li><strong>Veri İşleyici:</strong> ML Kit: Yok (yerel), Gemini/Cloud Vision: Google LLC</li>
+                            <li><strong>Veri İşleyici:</strong> Yok (yerel)</li>
                             <li><strong>İnternet:</strong> Gerektirmez (sadece model indirme için)</li>
                             <li><strong>Gizlilik:</strong> Hiçbir veri cihazınızdan çıkmaz, maksimum gizlilik</li>
-                            <li><strong>Kalite:</strong> İyi çeviri kalitesi</li>
                         </ul>
 
                         <div class="warning-card" style="margin-top: 1.5rem; background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); border-color: #4caf50;">
@@ -1860,8 +1874,8 @@
                 <div class="footer-section">
                     <h4>📱 Uygulama Bilgileri</h4>
                     <ul>
-                        <li>Sürüm: 3.0.0 (Build 50)</li>
-                        <li>Son Güncelleme: Mart 2026</li>
+                        <li>Sürüm: 4.1.0 (Build 62)</li>
+                        <li>Son Güncelleme: Haziran 2026</li>
                         <li>Compile SDK: API 36</li>
                         <li>Hedef SDK: Android 16 (API 36)</li>
                         <li>Minimum SDK: Android 6.0 (API 23)</li>

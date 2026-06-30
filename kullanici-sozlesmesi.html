@@ -83,6 +83,22 @@
             opacity: 1;
         }
 
+        .nav-links a.nav-link-active {
+            color: #ff6b6b;
+            position: relative;
+        }
+
+        .nav-links a.nav-link-active::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #ff6b6b;
+            border-radius: 2px;
+        }
+
         .nav-btn {
             background: #ff6b6b;
             color: white !important;
@@ -274,7 +290,7 @@
     <header class="navbar">
         <div class="container nav-container">
             <a href="index.html" class="logo">
-                <img src="https://images.squarespace-cdn.com/content/67eaf5802fa4430becab8e5e/ea424aa9-b006-4062-b0ff-99ad422317e1/screen+translate+ikon.jpg?content-type=image%2Fjpeg" alt="Screen Translate Logo" class="logo-img">
+                <img src="logo.jpg" alt="Screen Translate Logo" class="logo-img">
                 <span class="logo-text">Screen Translate</span>
             </a>
             <nav class="nav-links">
@@ -282,9 +298,10 @@
                 <a href="index.html#features">Özellikler</a>
                 <a href="https://www.screentranslate.com/hakkimizda">Hakkımızda</a>
                 <a href="https://www.screentranslate.com/gizlilik-politikasi" class="nav-link-sub">Gizlilik</a>
-                <a href="https://www.screentranslate.com/kullanici-sozlesmesi" class="nav-link-sub">Sözleşme</a>
+                <a href="https://www.screentranslate.com/kullanici-sozlesmesi" class="nav-link-sub nav-link-active">Sözleşme</a>
                 <a href="https://www.screentranslate.com/nasil-kullanilir" class="nav-link-sub">Nasıl Kullanılır</a>
                 <a href="https://www.screentranslate.com/yardim-sss">Yardım &amp; SSS</a>
+                <a href="index.html#download" class="nav-btn">İndir</a>
             </nav>
         </div>
     </header>
@@ -335,7 +352,7 @@
                         <li>Overlay (kaplama) arayüzü ile gerçek zamanlı çeviri</li>
                         <li>Hassas veri koruma ve gizlilik filtreleri</li>
                         <li>Özelleştirilebilir kullanıcı arayüzü</li>
-                        <li><strong>5 farklı çeviri modu:</strong> Varsayılan, Dokunma, Sohbet, Oyun, Sosyal Medya</li>
+                        <li><strong>6 farklı çeviri modu:</strong> Varsayılan, Dokunma, Sohbet, Oyun, Sosyal Medya, Seyahat</li>
                     </ul>
 
                     <div class="highlight-box">
@@ -385,8 +402,8 @@
                         Kullanıcı gizliliği bizim için en önemli konulardan biridir. Uygulamamız:
                     </p>
                     <ul>
-                        <li>OCR (metin tanıma) için ML Kit (yerel) veya Cloud Vision (bulut) seçenekleri sunar</li>
-                        <li>4 çeviri motoru sunar: Gemini AI, DeepSeek, Google Cloud Translate (online), ML Kit (offline - tamamen çevrimdışı)</li>
+                        <li>OCR (metin tanıma) için ML Kit (yerel), Cloud Vision veya Azure Vision (bulut, Pro) seçenekleri sunar</li>
+                        <li>8 çeviri motoru sunar: Gemini AI, DeepL, Claude AI, ChatGPT, Azure Translate (Pro), DeepSeek, Google Cloud Translate (online), ML Kit (offline - tamamen çevrimdışı)</li>
                         <li>Çevrilen metinleri hiçbir sunucuda saklamaz (sadece işleme için gönderilir)</li>
                         <li>Hassas veri filtreleri ile kişisel bilgileri korur</li>
                         <li>MediaProjection API'sini güvenli şekilde kullanır</li>

@@ -104,6 +104,22 @@
             opacity: 1;
         }
 
+        .nav-links a.nav-link-active {
+            color: #ff6b6b;
+            position: relative;
+        }
+
+        .nav-links a.nav-link-active::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #ff6b6b;
+            border-radius: 2px;
+        }
+
         .nav-btn {
             background: #ff6b6b;
             color: white !important;
@@ -546,7 +562,7 @@
     <header class="navbar">
         <div class="container nav-container">
             <a href="#" class="logo">
-                <img src="https://images.squarespace-cdn.com/content/67eaf5802fa4430becab8e5e/ea424aa9-b006-4062-b0ff-99ad422317e1/screen+translate+ikon.jpg?content-type=image%2Fjpeg" alt="Screen Translate Logo" class="logo-img">
+                <img src="logo.jpg" alt="Screen Translate Logo" class="logo-img">
                 <span class="logo-text">Screen Translate</span>
             </a>
             <nav class="nav-links">
@@ -569,8 +585,8 @@
                 <h1>Screen Translate</h1>
                 <p>Gelişmiş OCR ve AI teknolojisi ile devrimsel gerçek zamanlı ekran çevirisi. Android ekranınızdaki
                     herhangi bir metni <span class="highlight">50+ dil desteği</span> ve GPU hızlandırma ile anında
-                    çevirin. <span class="highlight">3 güçlü çeviri motoru</span> (Gemini AI, Google Cloud, ML Kit) ve
-                    <span class="highlight">5 farklı çeviri modu</span> ile her kullanım senaryosu için
+                    çevirin. <span class="highlight">8 güçlü çeviri motoru</span> (Gemini AI, DeepL, Claude AI, ChatGPT, Azure, Google Cloud, DeepSeek, ML Kit) ve
+                    <span class="highlight">6 farklı çeviri modu</span> ile her kullanım senaryosu için
                     optimize edilmiş deneyim!</p>
                 <div class="cta-buttons">
                     <a href="https://play.google.com/store/apps/details?id=com.esarikaya.screentranslate"
@@ -580,10 +596,10 @@
             </div>
         </section>
 
-        <!-- 5 ÇEVİRİ MODU BÖLÜMÜ -->
+        <!-- 6 ÇEVİRİ MODU BÖLÜMÜ -->
         <section id="modes" class="features">
             <div class="container">
-                <h2 class="section-title">🎮 5 Çeviri Modu</h2>
+                <h2 class="section-title">🎮 6 Çeviri Modu</h2>
                 <p style="text-align: center; max-width: 700px; margin: 0 auto 2rem; color: #666;">Her kullanım
                     senaryosu için optimize edilmiş çeviri deneyimi</p>
 
@@ -638,6 +654,17 @@
                         <small style="color: #888; display: block; margin-top: 1rem;">📷 Ekran Yakalama
                             (MediaProjection) kullanır</small>
                     </div>
+
+                    <!-- Seyahat Modu - YENİ -->
+                    <div class="feature-card"
+                        style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: 2px solid #5a4fcf;">
+                        <div class="feature-icon">📷</div>
+                        <h3>Seyahat Modu <span style="background:#fff;color:#667eea;font-size:0.7rem;padding:0.15rem 0.5rem;border-radius:10px;vertical-align:middle;">YENİ</span></h3>
+                        <p>Kamerayla menü, tabela veya belge fotoğrafı çekin — yapay zeka anında çevirsin. Yemek ve
+                            mekanlar için AI destekli bağlam notları ile ek bilgi alın.</p>
+                        <small style="color: rgba(255,255,255,0.9); display: block; margin-top: 1rem;">📸 Kamera
+                            kullanır · Pro özellik</small>
+                    </div>
                 </div>
 
                 <!-- AccessibilityService Açıklaması -->
@@ -655,8 +682,8 @@
                         <li>Yalnızca Sohbet Modu aktifken çalışır</li>
                     </ul>
                     <p style="color: #856404; margin-top: 1rem;">
-                        Diğer 4 mod (Varsayılan, Dokunma, Oyun, Sosyal Medya) Erişilebilirlik API kullanmaz, sadece
-                        ekran yakalama (MediaProjection) ile çalışır.
+                        Diğer 5 mod (Varsayılan, Dokunma, Oyun, Sosyal Medya, Seyahat) Erişilebilirlik API kullanmaz;
+                        ekran yakalama (MediaProjection) veya kamera ile çalışır.
                     </p>
                 </div>
             </div>
@@ -684,9 +711,9 @@
                     <div class="feature-card"
                         style="background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2);">
                         <div class="feature-icon">🔄</div>
-                        <h3 style="color: white;">3 Güçlü Çeviri Motoru</h3>
-                        <p style="color: rgba(255,255,255,0.9);">Gemini AI (premium), Google Cloud Translation (bulut),
-                            ML Kit (çevrimdışı) arasında otomatik yedekleme veya manuel seçim yapın.</p>
+                        <h3 style="color: white;">8 Güçlü Çeviri Motoru</h3>
+                        <p style="color: rgba(255,255,255,0.9);">Gemini AI, DeepL, Claude AI, ChatGPT, Azure, Google Cloud
+                            Translation, DeepSeek ve ML Kit (çevrimdışı) arasında otomatik yedekleme veya manuel seçim yapın.</p>
                     </div>
                     <div class="feature-card"
                         style="background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2);">
@@ -713,7 +740,7 @@
         <!-- ÇEVİRİ MOTORLARİ BÖLÜMÜ -->
         <section class="features">
             <div class="container">
-                <h2 class="section-title">🔄 3 Güçlü Çeviri Motoru</h2>
+                <h2 class="section-title">🔄 8 Güçlü Çeviri Motoru</h2>
                 <p style="text-align: center; max-width: 800px; margin: 0 auto 2rem; color: #666;">
                     Her ihtiyaç için optimize edilmiş çeviri motorları. Otomatik yedekleme sistemi ile kesintisiz hizmet.
                 </p>
@@ -733,6 +760,62 @@
                         </small>
                     </div>
 
+                    <!-- DeepL -->
+                    <div class="feature-card" style="border: 2px solid #0f4a8a;">
+                        <div class="feature-icon">🔵</div>
+                        <h3 style="color: #0f4a8a;">DeepL</h3>
+                        <p><strong>Premium AI Çeviri (Pro)</strong></p>
+                        <p>Avrupa'nın en doğru çeviri motoru olarak bilinir. Özellikle Avrupa dilleri için
+                           üstün doğallık ve dilbilgisi hassasiyeti.</p>
+                        <small style="color: #888; display: block; margin-top: 1rem;">
+                            💎 Pro özellik<br>
+                            🌐 İnternet gerektirir<br>
+                            🎯 En doğal çeviri
+                        </small>
+                    </div>
+
+                    <!-- Claude AI -->
+                    <div class="feature-card" style="border: 2px solid #cc6600;">
+                        <div class="feature-icon">🤖</div>
+                        <h3 style="color: #cc6600;">Claude AI</h3>
+                        <p><strong>Premium AI Çeviri (Pro)</strong></p>
+                        <p>Anthropic'in güçlü dil modeli. Bağlamsal derinlik ve nüanslı çeviri kalitesi
+                           gerektiren metinler için ideal.</p>
+                        <small style="color: #888; display: block; margin-top: 1rem;">
+                            💎 Pro özellik<br>
+                            🌐 İnternet gerektirir<br>
+                            🎯 Bağlam-farkındalıklı
+                        </small>
+                    </div>
+
+                    <!-- ChatGPT -->
+                    <div class="feature-card" style="border: 2px solid #10a37f;">
+                        <div class="feature-icon">🤖</div>
+                        <h3 style="color: #10a37f;">ChatGPT</h3>
+                        <p><strong>Premium AI Çeviri (Pro)</strong></p>
+                        <p>OpenAI'nin GPT-4o modeli. Geniş dil ve bağlam yelpazesinde tutarlı, akıcı
+                           çeviriler sunar.</p>
+                        <small style="color: #888; display: block; margin-top: 1rem;">
+                            💎 Pro özellik<br>
+                            🌐 İnternet gerektirir<br>
+                            🎯 Yüksek tutarlılık
+                        </small>
+                    </div>
+
+                    <!-- Azure Translate -->
+                    <div class="feature-card" style="border: 2px solid #0078d4;">
+                        <div class="feature-icon">☁️</div>
+                        <h3 style="color: #0078d4;">Azure Translate</h3>
+                        <p><strong>Bulut Tabanlı Çeviri (Pro)</strong></p>
+                        <p>Microsoft'un kurumsal çeviri altyapısı. Geniş dil desteği ve yüksek hızlı,
+                           güvenilir çeviriler.</p>
+                        <small style="color: #888; display: block; margin-top: 1rem;">
+                            💎 Pro özellik<br>
+                            🌐 İnternet gerektirir<br>
+                            ⚡ Hızlı ve kurumsal
+                        </small>
+                    </div>
+
                     <!-- Google Cloud Translation -->
                     <div class="feature-card" style="border: 2px solid #34a853;">
                         <div class="feature-icon">☁️</div>
@@ -744,6 +827,20 @@
                             🔄 Otomatik yedekleme<br>
                             🌐 İnternet gerektirir<br>
                             ⚡ Hızlı ve güvenilir
+                        </small>
+                    </div>
+
+                    <!-- DeepSeek -->
+                    <div class="feature-card" style="border: 2px solid #536dfe;">
+                        <div class="feature-icon">🌊</div>
+                        <h3 style="color: #536dfe;">DeepSeek</h3>
+                        <p><strong>AI Çeviri</strong></p>
+                        <p>Hızlı ve doğru AI çeviri motoru. Alternatif kalite seçeneği olarak ayarlardan
+                           seçilebilir.</p>
+                        <small style="color: #888; display: block; margin-top: 1rem;">
+                            🔄 Alternatif motor<br>
+                            🌐 İnternet gerektirir<br>
+                            ⚡ Hızlı çeviri
                         </small>
                     </div>
 
@@ -930,8 +1027,8 @@
                 <div class="footer-section">
                     <h4>🌟 Temel Özellikler</h4>
                     <ul>
-                        <li>• 5 Çeviri Modu (Sohbet, Oyun, Dokunma...)</li>
-                        <li>• 3 Güçlü Çeviri Motoru (Gemini, Google, ML Kit)</li>
+                        <li>• 6 Çeviri Modu (Sohbet, Oyun, Dokunma, Seyahat...)</li>
+                        <li>• 8 Güçlü Çeviri Motoru (Gemini, DeepL, Claude, ChatGPT, Azure...)</li>
                         <li>• 50+ OCR kaynak dili</li>
                         <li>• 50+ çeviri hedef dili</li>
                         <li>• Otomatik yedekleme sistemi</li>

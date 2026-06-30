@@ -224,6 +224,53 @@
             color: #ff6b6b;
         }
 
+        .phone-shot,
+        .proof-shot {
+            cursor: zoom-in;
+            transition: transform 0.2s ease;
+        }
+
+        .phone-shot:hover,
+        .proof-shot:hover {
+            transform: scale(1.03);
+        }
+
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 5000;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            cursor: zoom-out;
+        }
+
+        .lightbox-overlay.active {
+            display: flex;
+        }
+
+        .lightbox-overlay img {
+            max-width: 100%;
+            max-height: 90vh;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            color: white;
+            font-size: 2.2rem;
+            cursor: pointer;
+            line-height: 1;
+        }
+
         .btn {
             padding: 1rem 2rem;
             border: none;
@@ -646,7 +693,7 @@
                     <a href="#modes" class="btn btn-secondary">🎮 Modları Keşfet</a>
                 </div>
                 <div class="hero-shot-wrap">
-                    <img src="screenshots/anasayfa.png" alt="Screen Translate uygulama ana ekranı" class="phone-shot" loading="lazy">
+                    <img src="screenshots/anasayfa.png" alt="Screen Translate uygulama ana ekranı" class="phone-shot" loading="lazy" onclick="openLightbox('screenshots/full/anasayfa.png', this.alt)">
                 </div>
             </div>
         </section>
@@ -660,12 +707,12 @@
                 </p>
                 <div class="before-after">
                     <div>
-                        <img src="screenshots/ceviri-oncesi.png" alt="Çeviri öncesi orijinal ekran" class="proof-shot" loading="lazy">
+                        <img src="screenshots/ceviri-oncesi.png" alt="Çeviri öncesi orijinal ekran" class="proof-shot" loading="lazy" onclick="openLightbox('screenshots/full/ceviri-oncesi.png', this.alt)">
                         <p>Önce (Türkçe)</p>
                     </div>
                     <div class="ba-arrow">→</div>
                     <div>
-                        <img src="screenshots/ceviri-sonrasi.png" alt="Çeviri sonrası İngilizce overlay" class="proof-shot" loading="lazy">
+                        <img src="screenshots/ceviri-sonrasi.png" alt="Çeviri sonrası İngilizce overlay" class="proof-shot" loading="lazy" onclick="openLightbox('screenshots/full/ceviri-sonrasi.png', this.alt)">
                         <p>Sonra (İngilizce overlay)</p>
                     </div>
                 </div>
@@ -681,7 +728,7 @@
 
                 <div class="proof-grid">
                     <div>
-                        <img src="screenshots/mod-secimi.png" alt="Çeviri modu seçim ekranı" class="proof-shot" loading="lazy">
+                        <img src="screenshots/mod-secimi.png" alt="Çeviri modu seçim ekranı" class="proof-shot" loading="lazy" onclick="openLightbox('screenshots/full/mod-secimi.png', this.alt)">
                         <p>Tek dokunuşla mod değiştirin</p>
                     </div>
                 </div>
@@ -819,7 +866,7 @@
                 </div>
 
                 <div style="background: white; border-radius: 18px; padding: 2rem; margin-top: 2.5rem; max-width: 320px; margin-left: auto; margin-right: auto; text-align: center;">
-                    <img src="screenshots/gizlilik-koruma.png" alt="Korunan veri türleri ayar ekranı" class="proof-shot" loading="lazy" style="margin-bottom: 0.75rem;">
+                    <img src="screenshots/gizlilik-koruma.png" alt="Korunan veri türleri ayar ekranı" class="proof-shot" loading="lazy" style="margin-bottom: 0.75rem;" onclick="openLightbox('screenshots/full/gizlilik-koruma.png', this.alt)">
                     <p style="color: #666; font-size: 0.9rem; margin: 0;">Hassas verileriniz otomatik korunur</p>
                 </div>
             </div>
@@ -835,11 +882,11 @@
 
                 <div class="proof-grid">
                     <div>
-                        <img src="screenshots/motor-secimi.png" alt="Çeviri servisi seçim ekranı, 8 motor listesi" class="proof-shot" loading="lazy">
+                        <img src="screenshots/motor-secimi.png" alt="Çeviri servisi seçim ekranı, 8 motor listesi" class="proof-shot" loading="lazy" onclick="openLightbox('screenshots/full/motor-secimi.png', this.alt)">
                         <p>8 motor arasından seçin</p>
                     </div>
                     <div>
-                        <img src="screenshots/ocr-secimi.png" alt="OCR motoru seçim ekranı, ML Kit Cloud Vision Azure" class="proof-shot" loading="lazy">
+                        <img src="screenshots/ocr-secimi.png" alt="OCR motoru seçim ekranı, ML Kit Cloud Vision Azure" class="proof-shot" loading="lazy" onclick="openLightbox('screenshots/full/ocr-secimi.png', this.alt)">
                         <p>3 OCR motoru ile metin tanıma</p>
                     </div>
                 </div>
@@ -1227,6 +1274,26 @@
 
     <!-- Google Analytics -->
     <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script> -->
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox-overlay" onclick="closeLightbox()">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <img id="lightbox-img" src="" alt="">
+    </div>
+    <script>
+        function openLightbox(src, alt) {
+            const lb = document.getElementById('lightbox');
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox-img').alt = alt;
+            lb.classList.add('active');
+        }
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+        }
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') closeLightbox();
+        });
+    </script>
 </body>
 
 </html>

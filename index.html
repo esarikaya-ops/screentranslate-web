@@ -168,6 +168,62 @@
             flex-wrap: wrap;
         }
 
+        .phone-shot {
+            width: 220px;
+            border-radius: 24px;
+            border: 8px solid #1c1c22;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+            display: block;
+        }
+
+        .hero-shot-wrap {
+            margin-top: 2.5rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .proof-shot {
+            width: 200px;
+            border-radius: 18px;
+            border: 7px solid #1c1c22;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+            display: block;
+            margin: 0 auto 1rem;
+        }
+
+        .proof-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            max-width: 700px;
+            margin: 2.5rem auto 0;
+            text-align: center;
+        }
+
+        .proof-grid p {
+            font-size: 0.9rem;
+            color: #666;
+            margin: 0;
+        }
+
+        .before-after {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .before-after .proof-shot {
+            margin-bottom: 0.5rem;
+        }
+
+        .ba-arrow {
+            font-size: 2rem;
+            color: #ff6b6b;
+        }
+
         .btn {
             padding: 1rem 2rem;
             border: none;
@@ -589,6 +645,30 @@
                         target="_blank" class="btn btn-primary">📱 Google Play'den İndir</a>
                     <a href="#modes" class="btn btn-secondary">🎮 Modları Keşfet</a>
                 </div>
+                <div class="hero-shot-wrap">
+                    <img src="screenshots/anasayfa.png" alt="Screen Translate uygulama ana ekranı" class="phone-shot" loading="lazy">
+                </div>
+            </div>
+        </section>
+
+        <!-- ÇEVİRİ AKSİYON HALİNDE -->
+        <section class="features">
+            <div class="container">
+                <h2 class="section-title">⚡ Aksiyon Halinde</h2>
+                <p style="text-align: center; max-width: 700px; margin: 0 auto; color: #666;">
+                    Tek dokunuşla ekrandaki metin anında çevriliyor — overlay üzerinde, uygulamadan çıkmadan.
+                </p>
+                <div class="before-after">
+                    <div>
+                        <img src="screenshots/ceviri-oncesi.png" alt="Çeviri öncesi orijinal ekran" class="proof-shot" loading="lazy">
+                        <p>Önce (Türkçe)</p>
+                    </div>
+                    <div class="ba-arrow">→</div>
+                    <div>
+                        <img src="screenshots/ceviri-sonrasi.png" alt="Çeviri sonrası İngilizce overlay" class="proof-shot" loading="lazy">
+                        <p>Sonra (İngilizce overlay)</p>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -598,6 +678,13 @@
                 <h2 class="section-title">🎮 6 Çeviri Modu</h2>
                 <p style="text-align: center; max-width: 700px; margin: 0 auto 2rem; color: #666;">Her kullanım
                     senaryosu için optimize edilmiş çeviri deneyimi</p>
+
+                <div class="proof-grid">
+                    <div>
+                        <img src="screenshots/mod-secimi.png" alt="Çeviri modu seçim ekranı" class="proof-shot" loading="lazy">
+                        <p>Tek dokunuşla mod değiştirin</p>
+                    </div>
+                </div>
 
                 <div class="features-grid">
                     <!-- Varsayılan Mod -->
@@ -730,6 +817,11 @@
                         <p style="color: rgba(255,255,255,0.9);">50 dil arasında hızlıca arama yapın. Favori dillerinizi kaydedin, son kullanılanlar listesiyle hızlı erişim.</p>
                     </div>
                 </div>
+
+                <div style="background: white; border-radius: 18px; padding: 2rem; margin-top: 2.5rem; max-width: 320px; margin-left: auto; margin-right: auto; text-align: center;">
+                    <img src="screenshots/gizlilik-koruma.png" alt="Korunan veri türleri ayar ekranı" class="proof-shot" loading="lazy" style="margin-bottom: 0.75rem;">
+                    <p style="color: #666; font-size: 0.9rem; margin: 0;">Hassas verileriniz otomatik korunur</p>
+                </div>
             </div>
         </section>
 
@@ -740,6 +832,17 @@
                 <p style="text-align: center; max-width: 800px; margin: 0 auto 2rem; color: #666;">
                     Her ihtiyaç için optimize edilmiş çeviri motorları. Otomatik yedekleme sistemi ile kesintisiz hizmet.
                 </p>
+
+                <div class="proof-grid">
+                    <div>
+                        <img src="screenshots/motor-secimi.png" alt="Çeviri servisi seçim ekranı, 8 motor listesi" class="proof-shot" loading="lazy">
+                        <p>8 motor arasından seçin</p>
+                    </div>
+                    <div>
+                        <img src="screenshots/ocr-secimi.png" alt="OCR motoru seçim ekranı, ML Kit Cloud Vision Azure" class="proof-shot" loading="lazy">
+                        <p>3 OCR motoru ile metin tanıma</p>
+                    </div>
+                </div>
 
                 <div class="features-grid">
                     <!-- Gemini AI -->

@@ -4,18 +4,18 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Screen Translate — Android Gerçek Zamanlı Ekran Çeviri Uygulaması</title>
-  <meta name="description" content="Ekranınızdaki her metni gerçek zamanlı çevirin. 6 çeviri modu, 8 AI motoru (Gemini, DeepL, Claude, ChatGPT, Azure) ve 50+ dil desteği. Android için ücretsiz.">
+  <meta name="description" content="Ekranınızdaki her metni gerçek zamanlı çevirin. 7 çeviri modu (Manga modu dahil), 9 AI motoru (Gemini, DeepL, Claude, ChatGPT, Groq, Azure) ve 50+ dil desteği. Android için ücretsiz.">
   <link rel="canonical" href="https://www.screentranslate.com/">
   <link rel="icon" href="favicon.ico">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Screen Translate">
   <meta property="og:title" content="Screen Translate — Android Gerçek Zamanlı Ekran Çeviri Uygulaması">
-  <meta property="og:description" content="Ekranınızdaki her metni gerçek zamanlı çevirin. 6 çeviri modu, 8 AI motoru (Gemini, DeepL, Claude, ChatGPT, Azure) ve 50+ dil desteği. Android için ücretsiz.">
+  <meta property="og:description" content="Ekranınızdaki her metni gerçek zamanlı çevirin. 7 çeviri modu (Manga modu dahil), 9 AI motoru (Gemini, DeepL, Claude, ChatGPT, Groq, Azure) ve 50+ dil desteği. Android için ücretsiz.">
   <meta property="og:url" content="https://www.screentranslate.com/">
   <meta property="og:image" content="https://www.screentranslate.com/logo.jpg">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Screen Translate — Android Gerçek Zamanlı Ekran Çeviri Uygulaması">
-  <meta name="twitter:description" content="Ekranınızdaki her metni gerçek zamanlı çevirin. 6 çeviri modu, 8 AI motoru (Gemini, DeepL, Claude, ChatGPT, Azure) ve 50+ dil desteği. Android için ücretsiz.">
+  <meta name="twitter:description" content="Ekranınızdaki her metni gerçek zamanlı çevirin. 7 çeviri modu (Manga modu dahil), 9 AI motoru (Gemini, DeepL, Claude, ChatGPT, Groq, Azure) ve 50+ dil desteği. Android için ücretsiz.">
   <meta name="twitter:image" content="https://www.screentranslate.com/logo.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,6 +31,8 @@
   .mobile-menu-panel { display: none; }
   #nav-toggle:checked ~ .mobile-menu-panel { display: flex !important; }
   label[for="nav-toggle"] { -webkit-tap-highlight-color: transparent; }
+  .wn-card { transition: transform .25s ease, box-shadow .25s ease; }
+  .wn-card:hover { transform: translateY(-3px); box-shadow: rgba(0, 0, 0, 0.5) 0px 18px 40px -18px; }
   @media (min-width: 1080px) {
     .nav-desktop { display: flex !important; }
     .nav-hamburger { display: none !important; }
@@ -87,24 +89,25 @@
 
     <section style="max-width: 1200px; margin: 0px auto; padding: clamp(48px, 8vw, 110px) 24px 70px; display: flex; flex-direction: column; align-items: center; gap: clamp(40px, 6vw, 72px);">
       <div style="flex: 1 1 420px; min-width: 0px; display: flex; flex-direction: column; align-items: center; text-align: center;">
-        <div style="display: inline-flex; align-items: center; gap: 10px; padding: 6px 14px; border: 1px solid rgba(255, 125, 77, 0.3); border-radius: 999px; background: rgba(255, 125, 77, 0.06); margin-bottom: 26px;">
+        <a href="#whats-new" style="display: inline-flex; align-items: center; gap: 10px; padding: 6px 14px; border: 1px solid rgba(255, 125, 77, 0.3); border-radius: 999px; background: rgba(255, 125, 77, 0.06); margin-bottom: 26px;">
           <span style="width: 6px; height: 6px; border-radius: 50%; background: rgb(255, 125, 77); box-shadow: rgb(255, 125, 77) 0px 0px 10px;"></span>
-          <span style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11.5px; letter-spacing: 0.08em; color: rgb(255, 185, 151);">v4.1 · ANDROID 15 &amp; 16 HAZIR</span>
-        </div>
+          <span style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11.5px; letter-spacing: 0.08em; color: rgb(255, 185, 151);">v4.2 · YENİ: MANGA MODU + GROQ</span>
+          <span style="font-size: 12px; color: rgb(255, 125, 77);">↓</span>
+        </a>
         <h1 style="font-family: &quot;Space Grotesk&quot;, sans-serif; font-weight: 600; font-size: clamp(2.3rem, 5.4vw, 4.15rem); line-height: 1.02; letter-spacing: -0.03em; margin: 0px 0px 22px; color: rgb(246, 244, 241); text-wrap: balance; max-width: 16ch;">Ekrandaki her şeyi, kendi dilinde oku.</h1>
-        <p style="font-size: clamp(1.02rem, 1.6vw, 1.22rem); line-height: 1.6; color: rgb(168, 162, 154); margin: 0px 0px 34px; max-width: 34ch;">Gerçek zamanlı OCR ve 8 yapay zeka motoruyla telefon ekranındaki her metni — uygulamadan hiç çıkmadan, saniyeler içinde çevir.</p>
+        <p style="font-size: clamp(1.02rem, 1.6vw, 1.22rem); line-height: 1.6; color: rgb(168, 162, 154); margin: 0px 0px 34px; max-width: 34ch;">Gerçek zamanlı OCR ve 9 yapay zeka motoruyla telefon ekranındaki her metni — uygulamadan hiç çıkmadan, saniyeler içinde çevir.</p>
         <div style="display: flex; flex-wrap: wrap; gap: 14px; justify-content: center;">
           <a href="https://play.google.com/store/apps/details?id=com.esarikaya.screentranslate" target="_blank" style="background: rgb(255, 125, 77); color: rgb(11, 11, 13); font-weight: 600; font-size: 16px; padding: 15px 28px; border-radius: 14px; box-shadow: rgba(255, 125, 77, 0.6) 0px 12px 34px -8px;">Google Play'den İndir</a>
           <a href="#action" style="background: rgba(255, 255, 255, 0.04); color: rgb(244, 242, 239); font-weight: 600; font-size: 16px; padding: 15px 28px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.12);">Modları keşfet</a>
         </div>
         <div style="display: flex; gap: clamp(24px, 4vw, 44px); margin-top: 46px; flex-wrap: wrap; justify-content: center;">
           <div>
-            <div style="font-family: &quot;Space Grotesk&quot;, sans-serif; font-size: 2.1rem; font-weight: 600; color: rgb(255, 125, 77); line-height: 1;">6</div>
+            <div style="font-family: &quot;Space Grotesk&quot;, sans-serif; font-size: 2.1rem; font-weight: 600; color: rgb(255, 125, 77); line-height: 1;">7</div>
             <div style="font-size: 13px; color: rgb(143, 138, 130); margin-top: 6px; letter-spacing: 0.01em;">Çeviri modu</div>
           </div>
           <div style="width: 1px; background: rgba(255, 255, 255, 0.1);"></div>
           <div>
-            <div style="font-family: &quot;Space Grotesk&quot;, sans-serif; font-size: 2.1rem; font-weight: 600; color: rgb(255, 125, 77); line-height: 1;">8</div>
+            <div style="font-family: &quot;Space Grotesk&quot;, sans-serif; font-size: 2.1rem; font-weight: 600; color: rgb(255, 125, 77); line-height: 1;">9</div>
             <div style="font-size: 13px; color: rgb(143, 138, 130); margin-top: 6px;">AI motoru</div>
           </div>
           <div style="width: 1px; background: rgba(255, 255, 255, 0.1);"></div>
@@ -134,6 +137,39 @@
             <div style="font-size: 14px; color: rgb(244, 242, 239); font-weight: 500;">Oynamak için Başlat'a bas</div>
           </div>
         
+      </div>
+    </section>
+
+    <section id="whats-new" style="max-width: 1200px; margin: 0px auto; padding: 0px 24px 10px;">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+        <span style="width: 26px; height: 1px; background: rgb(255, 125, 77);"></span>
+        <span style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11.5px; letter-spacing: 0.1em; color: rgb(255, 185, 151);">v4.2 İLE YENİ</span>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 16px; align-items: stretch;">
+        <a href="nasil-kullanilir.html#manga" class="wn-card" style="display: flex; flex-direction: column; gap: 14px; padding: 24px 24px 22px; border-radius: 18px; background: linear-gradient(150deg, rgba(255, 125, 77, 0.1), rgba(255, 255, 255, 0.016)); border: 1px solid rgba(255, 125, 77, 0.32); color: inherit;">
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+            <span style="display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 12px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.09);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgb(255, 125, 77)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v14H6.5A2.5 2.5 0 0 0 4 19.5z"/><path d="M4 19.5V5.5"/><path d="M9 8h6"/><path d="M12 8v6"/></svg></span>
+            <span style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 10px; letter-spacing: 0.08em; color: rgb(255, 125, 77); padding: 4px 10px; border-radius: 999px; border: 1px solid rgba(255, 125, 77, 0.32); background: rgba(255, 255, 255, 0.03);">YENİ MOD</span>
+          </div>
+          <div>
+            <div style="font-family: &quot;Space Grotesk&quot;, sans-serif; font-weight: 600; font-size: 1.22rem; letter-spacing: -0.01em; color: rgb(244, 242, 239); margin-bottom: 8px;">Manga Modu</div>
+            <p style="font-size: 0.95rem; line-height: 1.55; color: rgb(157, 152, 143); margin: 0px;">Konuşma balonlarını bulur, dikey Japonca metni okur ve tüm sayfayı tek seferde çevirir. İsteğe bağlı cihaz-içi Manga OCR ile Japonca tanıma çok daha isabetli; Çince ve Korece de desteklenir.</p>
+          </div>
+          <span style="font-size: 13.5px; font-weight: 600; color: rgb(255, 125, 77); margin-top: auto;">Nasıl çalışır →</span>
+        </a>
+
+        <a href="#engines" class="wn-card" style="display: flex; flex-direction: column; gap: 14px; padding: 24px 24px 22px; border-radius: 18px; background: linear-gradient(150deg, rgba(55, 219, 200, 0.08), rgba(255, 255, 255, 0.016)); border: 1px solid rgba(55, 219, 200, 0.3); color: inherit;">
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+            <span style="display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 12px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.09);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgb(55, 219, 200)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></span>
+            <span style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 10px; letter-spacing: 0.08em; color: rgb(55, 219, 200); padding: 4px 10px; border-radius: 999px; border: 1px solid rgba(55, 219, 200, 0.3); background: rgba(255, 255, 255, 0.03);">YENİ MOTOR · PRO</span>
+          </div>
+          <div>
+            <div style="font-family: &quot;Space Grotesk&quot;, sans-serif; font-weight: 600; font-size: 1.22rem; letter-spacing: -0.01em; color: rgb(244, 242, 239); margin-bottom: 8px;">Groq — ultra hızlı çeviri</div>
+            <p style="font-size: 0.95rem; line-height: 1.55; color: rgb(157, 152, 143); margin: 0px;">Groq altyapısında çalışan açık kaynaklı gpt-oss modeli: 9. çeviri motorumuz, en düşük gecikmeli AI çeviri seçeneği. Motor listesinden tek dokunuşla seç.</p>
+          </div>
+          <span style="font-size: 13.5px; font-weight: 600; color: rgb(55, 219, 200); margin-top: auto;">Tüm motorlar →</span>
+        </a>
+
       </div>
     </section>
 
@@ -170,10 +206,10 @@
     <section id="modes" style="max-width: 1200px; margin: 0px auto; padding: 70px 24px;">
       <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 14px;">
         <span style="width: 26px; height: 1px; background: rgb(255, 125, 77);"></span>
-        <span style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11.5px; letter-spacing: 0.1em; color: rgb(255, 185, 151);">6 ÇEVİRİ MODU</span>
+        <span style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11.5px; letter-spacing: 0.1em; color: rgb(255, 185, 151);">7 ÇEVİRİ MODU</span>
       </div>
       <h2 style="font-family: &quot;Space Grotesk&quot;, sans-serif; font-weight: 600; font-size: clamp(1.8rem, 3.6vw, 2.7rem); letter-spacing: -0.02em; margin: 0px 0px 12px; color: rgb(246, 244, 241);">Her senaryo için özel bir mod</h2>
-      <p style="font-size: 1.06rem; color: rgb(168, 162, 154); max-width: 60ch; margin: 0px 0px 44px; line-height: 1.6;">Genel kullanımdan oyuna, sohbetten seyahate — her mod kendi işi için optimize edildi.</p>
+      <p style="font-size: 1.06rem; color: rgb(168, 162, 154); max-width: 60ch; margin: 0px 0px 44px; line-height: 1.6;">Genel kullanımdan oyuna, sohbetten seyahate, mangadan kameraya — her mod kendi işi için optimize edildi.</p>
 
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(272px, 1fr)); gap: 16px; align-items: stretch;">
         
@@ -219,6 +255,16 @@
             <span style="display: inline-block; font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 10.5px; letter-spacing: 0.04em; color: rgb(201, 196, 188); padding: 5px 11px; border-radius: 999px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.09);">Kamera · Pro</span>
           </div>
         
+          <div class="scp0" style="position: relative; padding: 26px 24px; border-radius: 18px; background: linear-gradient(rgba(255, 125, 77, 0.09), rgba(255, 255, 255, 0.016)); border: 1px solid rgba(255, 125, 77, 0.28); overflow: hidden;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px;">
+              <div style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 13px; color: rgb(255, 125, 77); letter-spacing: 0.05em;">07</div>
+              <span style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 10px; letter-spacing: 0.08em; color: rgb(255, 125, 77); padding: 3px 9px; border-radius: 999px; border: 1px solid rgba(255, 125, 77, 0.45); background: rgba(255, 125, 77, 0.1);">YENİ · v4.2</span>
+            </div>
+            <h3 style="font-family: &quot;Space Grotesk&quot;, sans-serif; font-weight: 600; font-size: 1.28rem; margin: 0px 0px 10px; color: rgb(244, 242, 239); letter-spacing: -0.01em;">Manga Modu</h3>
+            <p style="font-size: 0.96rem; line-height: 1.55; color: rgb(157, 152, 143); margin: 0px 0px 20px;">Konuşma balonlarını bulur, dikey Japonca metni okur ve tüm sayfayı tek seferde çevirir. İsteğe bağlı cihaz-içi Manga OCR motoru ile Japonca tanıma çok daha isabetli.</p>
+            <span style="display: inline-block; font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 10.5px; letter-spacing: 0.04em; color: rgb(201, 196, 188); padding: 5px 11px; border-radius: 999px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.09);">Ekran yakalama · Japonca / Çince / Korece</span>
+          </div>
+        
       </div>
 
       <div style="display: flex; align-items: center; justify-content: center; gap: clamp(28px, 5vw, 56px); flex-wrap: wrap; margin-top: 52px; padding: 34px; border-radius: 22px; background: linear-gradient(120deg, rgba(255, 125, 77, 0.05), rgba(55, 219, 200, 0.04)); border: 1px solid rgba(255, 255, 255, 0.07);">
@@ -235,9 +281,9 @@
     <section id="engines" style="max-width: 1200px; margin: 0px auto; padding: 70px 24px;">
       <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 14px;">
         <span style="width: 26px; height: 1px; background: rgb(255, 125, 77);"></span>
-        <span style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11.5px; letter-spacing: 0.1em; color: rgb(255, 185, 151);">8 ÇEVİRİ MOTORU</span>
+        <span style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11.5px; letter-spacing: 0.1em; color: rgb(255, 185, 151);">9 ÇEVİRİ MOTORU</span>
       </div>
-      <h2 style="font-family: &quot;Space Grotesk&quot;, sans-serif; font-weight: 600; font-size: clamp(1.8rem, 3.6vw, 2.7rem); letter-spacing: -0.02em; margin: 0px 0px 12px; color: rgb(246, 244, 241);">Sekiz motor. Sıfır kesinti.</h2>
+      <h2 style="font-family: &quot;Space Grotesk&quot;, sans-serif; font-weight: 600; font-size: clamp(1.8rem, 3.6vw, 2.7rem); letter-spacing: -0.02em; margin: 0px 0px 12px; color: rgb(246, 244, 241);">Dokuz motor. Sıfır kesinti.</h2>
       <p style="font-size: 1.06rem; color: rgb(168, 162, 154); max-width: 58ch; margin: 0px 0px 40px; line-height: 1.6;">Bir motor takılırsa akıllı yedekleme sıradakine geçer. Dilersen tek bir motoru da sabitleyebilirsin.</p>
 
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px;">
@@ -301,6 +347,14 @@
           <div class="scp1" style="display: flex; align-items: center; gap: 14px; padding: 16px 18px; border-radius: 14px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08);">
             <span style="flex: 0 0 auto; width: 9px; height: 9px; border-radius: 50%; background: rgb(255, 125, 77); box-shadow: rgba(255, 125, 77, 0.7) 0px 0px 10px;"></span>
             <div>
+              <div style="font-family: &quot;Space Grotesk&quot;, sans-serif; font-weight: 600; font-size: 1.02rem; color: rgb(244, 242, 239);">Groq</div>
+              <div style="font-size: 12.5px; color: rgb(143, 138, 130); margin-top: 2px;">Ultra hızlı açık model</div>
+            </div>
+          </div>
+        
+          <div class="scp1" style="display: flex; align-items: center; gap: 14px; padding: 16px 18px; border-radius: 14px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08);">
+            <span style="flex: 0 0 auto; width: 9px; height: 9px; border-radius: 50%; background: rgb(255, 125, 77); box-shadow: rgba(255, 125, 77, 0.7) 0px 0px 10px;"></span>
+            <div>
               <div style="font-family: &quot;Space Grotesk&quot;, sans-serif; font-weight: 600; font-size: 1.02rem; color: rgb(244, 242, 239);">ML Kit</div>
               <div style="font-size: 12.5px; color: rgb(143, 138, 130); margin-top: 2px;">Offline · %100 gizli</div>
             </div>
@@ -324,13 +378,13 @@
           <div style="display: inline-block; padding: 7px; border-radius: 36px; background: linear-gradient(165deg, rgb(36, 36, 39), rgb(13, 13, 16)); border: 1px solid rgba(255, 255, 255, 0.09);">
             <img src="screenshots/motor-secimi.png" alt="engine picker" style="display: block; width: clamp(184px, 21vw, 216px); border-radius: 30px;">
           </div>
-          <div style="margin-top: 14px; font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11.5px; color: rgb(143, 138, 130);">8 motor arasından seç</div>
+          <div style="margin-top: 14px; font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11.5px; color: rgb(143, 138, 130);">9 motor arasından seç</div>
         </div>
         <div style="text-align: center;">
           <div style="display: inline-block; padding: 7px; border-radius: 36px; background: linear-gradient(165deg, rgb(36, 36, 39), rgb(13, 13, 16)); border: 1px solid rgba(255, 255, 255, 0.09);">
             <img src="screenshots/ocr-secimi.png" alt="ocr picker" style="display: block; width: clamp(184px, 21vw, 216px); border-radius: 30px;">
           </div>
-          <div style="margin-top: 14px; font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11.5px; color: rgb(143, 138, 130);">3 OCR motoru ile metin tanıma</div>
+          <div style="margin-top: 14px; font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11.5px; color: rgb(143, 138, 130);">4 OCR motoru ile metin tanıma</div>
         </div>
       </div>
     </section>
@@ -343,7 +397,7 @@
             <span style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11.5px; letter-spacing: 0.1em; color: rgb(255, 185, 151);">GERÇEK ZAMANLI</span>
           </div>
           <h2 style="font-family: &quot;Space Grotesk&quot;, sans-serif; font-weight: 600; font-size: clamp(1.8rem, 3.6vw, 2.7rem); letter-spacing: -0.02em; margin: 0px 0px 14px; color: rgb(246, 244, 241);">GPU hızında OCR.</h2>
-          <p style="font-size: 1.06rem; color: rgb(168, 162, 154); margin: 0px 0px 28px; line-height: 1.6; max-width: 46ch;">TensorFlow Lite GPU hızlandırmasıyla, 50 kaynak dilde metin tanıma yıldırım hızında. Üç OCR motoru arasından seç.</p>
+          <p style="font-size: 1.06rem; color: rgb(168, 162, 154); margin: 0px 0px 28px; line-height: 1.6; max-width: 46ch;">TensorFlow Lite GPU hızlandırmasıyla, 50 kaynak dilde metin tanıma yıldırım hızında. Dört OCR motoru arasından seç — manga için cihaz-içi Manga OCR dahil.</p>
           <div style="display: flex; flex-direction: column; gap: 12px;">
             
               <div style="display: flex; align-items: flex-start; gap: 14px; padding: 16px 18px; border-radius: 14px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08);">
@@ -367,6 +421,14 @@
                 <div>
                   <div style="font-family: &quot;Space Grotesk&quot;, sans-serif; font-weight: 600; font-size: 1.04rem; color: rgb(244, 242, 239);">Azure Vision</div>
                   <div style="font-size: 13px; color: rgb(143, 138, 130); margin-top: 3px; line-height: 1.5;">Piksel hassasiyetinde tanıma · Pro.</div>
+                </div>
+              </div>
+
+              <div style="display: flex; align-items: flex-start; gap: 14px; padding: 16px 18px; border-radius: 14px; background: rgba(255, 125, 77, 0.06); border: 1px solid rgba(255, 125, 77, 0.24);">
+                <span style="flex: 0 0 auto; margin-top: 3px; width: 8px; height: 8px; border-radius: 2px; background: rgb(255, 125, 77); box-shadow: rgba(255, 125, 77, 0.6) 0px 0px 8px;"></span>
+                <div>
+                  <div style="font-family: &quot;Space Grotesk&quot;, sans-serif; font-weight: 600; font-size: 1.04rem; color: rgb(244, 242, 239);">Manga OCR <span style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 9.5px; letter-spacing: 0.08em; color: rgb(255, 125, 77); padding: 2px 7px; border-radius: 999px; border: 1px solid rgba(255, 125, 77, 0.45); vertical-align: middle; margin-left: 6px;">YENİ</span></div>
+                  <div style="font-size: 13px; color: rgb(143, 138, 130); margin-top: 3px; line-height: 1.5;">Japonca manga balonları için cihaz-içi özel model · isteğe bağlı indirme.</div>
                 </div>
               </div>
             
@@ -415,9 +477,9 @@
         <div style="position: absolute; top: -120px; left: 50%; transform: translateX(-50%); width: 520px; height: 320px; background: radial-gradient(circle, rgba(255, 125, 77, 0.28), transparent 68%); filter: blur(20px); pointer-events: none;"></div>
         <div style="position: relative; z-index: 1;">
           <h2 style="font-family: &quot;Space Grotesk&quot;, sans-serif; font-weight: 600; font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -0.025em; margin: 0px 0px 14px; color: rgb(246, 244, 241); text-wrap: balance;">Ekranını çevirmeye başla.</h2>
-          <p style="font-size: 1.08rem; color: rgb(201, 196, 188); margin: 0px 0px 34px;">Android 6.0+ · Ücretsiz indir · Reklamsız Pro seçeneği</p>
+          <p style="font-size: 1.08rem; color: rgb(201, 196, 188); margin: 0px 0px 34px;">Android 7.0+ · Ücretsiz indir · Reklamsız Pro seçeneği</p>
           <a href="https://play.google.com/store/apps/details?id=com.esarikaya.screentranslate" target="_blank" style="display: inline-block; background: rgb(255, 125, 77); color: rgb(11, 11, 13); font-weight: 700; font-size: 17px; padding: 17px 36px; border-radius: 15px; box-shadow: rgba(255, 125, 77, 0.7) 0px 16px 40px -10px;">Google Play'den İndir</a>
-          <div style="margin-top: 22px; font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11.5px; color: rgb(143, 138, 130); letter-spacing: 0.02em;">Android 6.0 (API 23) ve üzeri · ARM64, ARMv7, x86_64</div>
+          <div style="margin-top: 22px; font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11.5px; color: rgb(143, 138, 130); letter-spacing: 0.02em;">Android 7.0 (API 24) ve üzeri · ARM64, ARMv7, x86_64</div>
         </div>
       </div>
     </section>

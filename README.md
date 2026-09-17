@@ -49,7 +49,7 @@ web sayfası/
   - ve daha fazlası
 
 ### 🛡️ Teknik Özellikler
-- **Minimum Android:** 6.0 (API 23)
+- **Minimum Android:** 7.0 (API 24)
 - **Compile SDK:** API 36
 - **Hedef Android:** 16 (API 36)
 - **Mimari Desteği:** ARM64-v8a, ARMv7, x86_64
@@ -83,7 +83,7 @@ WAKE_LOCK                   // Android 15 uyumluluğu
 - **Dil:** Kotlin
 - **UI Framework:** Jetpack Compose + View Binding
 - **Build Tool:** Gradle with Kotlin DSL
-- **Min/Compile/Target SDK:** 23/36/36
+- **Min/Compile/Target SDK:** 24/36/36
 - **Architecture:** MVVM pattern
 
 ## 📈 Performans Optimizasyonları
